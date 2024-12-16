@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@100;200;300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+/* Arabic Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600;700;800&display=swap');
+/* أو */
+@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap');
+
+/* English Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+/* أو */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+
+
+.relaxed { 
+  line-height : 1.75;
+}
+
+.cairo {
+  font-family: 'Cairo', sans-serif;
+}
+
+
+
+.line-lg { 
+  line-height : 1.20;
+}
+
+
+
+.color {
+  color:#4b4dd0;
+}
+
+@keyframes border-glow {
+  0% {
+    border: 2px solid rgba(147, 51, 234, 0.5);
+    box-shadow: 0 0 10px rgba(147, 51, 234, 0.3);
+  }
+  33% {
+    border: 2px solid rgba(59, 130, 246, 0.5);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+  }
+  66% {
+    border: 2px solid rgba(16, 185, 129, 0.5);
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+  }
+  100% {
+    border: 2px solid rgba(147, 51, 234, 0.5);
+    box-shadow: 0 0 10px rgba(147, 51, 234, 0.3);
+  }
+}
+
+.animate-border-glow {
+  animation: border-glow 6s linear infinite;
+}
+
+
+.noramal { 
+  line-height : 1.5;
+}
+
+@keyframes border-rotate {
+  0%, 100% {
+    transform: rotate(0deg) scale(1.01);
+    opacity: 0.9;
+  }
+  50% {
+    transform: rotate(180deg) scale(1.01);
+    opacity: 1;
+  }
+}
+
+.animate-border-rotate {
+  animation: border-rotate 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: transform;
+  transform-origin: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-border-rotate {
+    animation: none;
+  }
+}
+
+
+
+li {
+  list-style: none;
+}
+a {
+  all: unset;
+
+  transition: 0.2s;
+}
+
+button {
+  all: unset;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button:active {
+  scale: 0.9;
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+
+@keyframes shine {
+  from {
+    background-position: 100% center;
+  }
+  to {
+    background-position: -100% center;
+  }
+}
+
+.animate-shimmer {
+  background-size: 200% auto;
+  animation: shine 10s linear infinite;
+}
+
+
+
+
+
+
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-pulse-slower {
+  animation: pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+
+
+
+@keyframes wave {
+  0% { transform: rotate(0deg); }
+  10% { transform: rotate(14deg); }
+  20% { transform: rotate(-8deg); }
+  30% { transform: rotate(14deg); }
+  40% { transform: rotate(-4deg); }
+  50% { transform: rotate(10deg); }
+  60% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes sparkle {
+  0% { transform: scale(0) rotate(0deg); opacity: 0; }
+  50% { transform: scale(1) rotate(90deg); opacity: 1; }
+  100% { transform: scale(0) rotate(180deg); opacity: 0; }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animate-float {
+  animation: float 15s infinite;
+}
+
+.animate-wave {
+  animation: wave 10s ease-in-out infinite;
+}
+
+.animate-sparkle {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+
+.text-4xl {
+  font-size: 2.5rem;
+  line-height: 3.5rem;
+}
+
+
+.tb {
+  flex-direction: column;
+}
+
+.flex {
+  display: flex;
+  
+  
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+.animation-delay-6000 {
+  animation-delay: 6s;
+}
