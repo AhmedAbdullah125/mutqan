@@ -92,20 +92,20 @@ function PartnersSlider() {
   }, []);
 
   return (
-    <div className="relative w-full max-w-6xl mx-auto mt-6 md:mt-2 mb-0 md:mb-4   ">
+    <div className="">
       {/* Title Section */}
-      <h3 className={`text-md md:text-xl sm:text-md   cairo mb-8 mt-4 text-center 
+      <h3 className={`text-sm md:text-md font-semibold  cairo text-center 
          ${isDarkMode ? 'text-white' : 'text-gray-900'}
-         ${isRTL ? 'lg:text-right' : 'lg:text-left'}`}>
+         ${isRTL ? 'md:text-right' : 'md:text-left'}`}>
         {t('ourPartners.title')}
       </h3>
 
       {/* Navigation Buttons */}
-      <div className="relative flex justify-center items-center sm:left-0 sm:right-0 md:left-0 md:right-0 lg:-left-5 lg:-right-5 flex-col items-center lg:w-fit">
+      <div className="relative mt flex justify-center items-center sm:left-0 sm:right-0  md:-left-5 md:-right-5 flex-col items-center lg:w-fit">
         <div className="relative flex justify-center sm:items-center lg:justify-start w-full">
           <button
             onClick={() => navigateSlide(isRTL ? 1 : -1)}
-            className={`w-10 h-10 flex items-center justify-center rounded-full transition-colors duration-200 shadow-lg
+            className={`w-10 h-10    flex items-center justify-center rounded-full transition-colors duration-200 shadow-lg
               ${isDarkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-50'}`}
             onMouseEnter={() => setIsAutoplay(false)}
             onMouseLeave={() => setIsAutoplay(true)}
@@ -118,7 +118,7 @@ function PartnersSlider() {
           </button>
 
           {/* Slider Content */}
-          <div className="flex items-center justify-center">
+          <div className="flex mt-6 items-center justify-center">
             <AnimatePresence initial={false} custom={direction} mode="wait">
               <motion.div
                 key={currentIndex}
@@ -128,7 +128,7 @@ function PartnersSlider() {
                 animate="center"
                 exit="exit"
                 transition={{ type: 'spring', stiffness: 300, damping: 40 }}
-                className={`grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-4`}
+                className={`grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-2`}
               >
                 {getCurrentSlidePartners().map((partner) => (
                   <motion.div
@@ -145,7 +145,7 @@ function PartnersSlider() {
                       <img
                         src={partner.logo}
                         alt={partner.name}
-                        className="w-24 h-20 md:w-28 md:h-24 object-contain transition-transform duration-300"
+                        className=" xs:w-24 xs:h-18 sm:h-20  md:w-24 md:h-20 xl:h-24 object-contain transition-transform duration-300"
                         loading="lazy"
                       />
                     </a>
@@ -171,12 +171,12 @@ function PartnersSlider() {
         </div>
 
         {/* Pagination Dots */}
-        <div className="flex justify-center mt-2 gap-2">
+        <div className="flex justify-center mt-3 gap-1">
           {[...Array(totalSlides)].map((_, index) => (
             <motion.button
               key={index}
               className={`w-2 h-2 rounded-full transition-all duration-300
-                ${currentIndex === index ? (isDarkMode ? 'bg-emerald-500 w-4' : 'bg-emerald-500  w-4') : (isDarkMode ? 'bg-white/20' : 'bg-black/20')}`}
+                ${currentIndex === index ? (isDarkMode ? ' bg-primary w-4' : 'bg-secondary  w-4') : (isDarkMode ? 'bg-white/20' : 'bg-black/20')}`}
               whileHover={{ scale: 1.2 }}
               onClick={() => {
                 setDirection(index > currentIndex ? 1 : -1);

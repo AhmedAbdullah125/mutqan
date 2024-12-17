@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import { useTheme } from '../../Context/ThemeContext';
 
 const SQUARE_COUNT = 15;
-const LARGE_SQUARE_SIZE = 40;
-const DEFAULT_SQUARE_SIZE = 35;
+const LARGE_SQUARE_SIZE = 36;
+const DEFAULT_SQUARE_SIZE = 30;
 const COLLISION_DISTANCE = 60;
 
 export default function FloatingSquares() {
@@ -96,7 +96,7 @@ export default function FloatingSquares() {
           transition={{
             type: "tween",
             duration: 0.016,
-            ease: "linear"  // تحسين السلاسة باستخدام tween و ease
+            ease: "easeInOut"  // تحسين السلاسة باستخدام tween و ease
           }}
           style={{
             width: square.size,
@@ -107,23 +107,23 @@ export default function FloatingSquares() {
             absolute rounded-xl backdrop-blur-md transform-gpu
             bg-gradient-to-br ${isDarkMode ? 
               'from-violet-600/20 via-indigo-500/20 to-cyan-500/20' : 
-              'from-green-500/20 via-green-400/45 to-green-500/20'}
+              'from-blue-500/20 via-sky-400/45 to-blue-500/20'}
             border-2 border-transparent
             ${isDarkMode ? 
               'hover:border-violet-500 hover:shadow-violet-500/50' : 
-              'hover:border-emerald-400 hover:shadow-emerald-400/50'}
+              'hover:border-indigo-400 hover:shadow-violet-400/50'}
             before:content-[''] before:absolute before:inset-[-4px]
             before:rounded-xl before:bg-gradient-to-r
             ${isDarkMode ? 
               'before:from-violet-500/30 before:via-indigo-500/30 before:to-cyan-500/30' : 
-              'before:from-emerald-400/30 before:via-sky-400/30 before:to-orange-400/30'}
-            before:animate-pulse before:blur-xl
+              'before:from-blue-400/30 before:via-sky-400/60 before:to-violet-400/60'}
+            before:animate-pulse before:blur-md
             after:content-[''] after:absolute after:inset-0
             after:rounded-xl after:bg-gradient-to-br
             ${isDarkMode ? 
               'after:from-violet-600/10 after:to-cyan-500/10' :
               'after:from-emerald-400/10 after:to-orange-400/10'}
-            after:animate-shimmer after:blur-md
+            after:animate-shimmer after:blur-sm
           `}
         />
       ))}

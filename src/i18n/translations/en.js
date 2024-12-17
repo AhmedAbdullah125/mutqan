@@ -16,7 +16,7 @@ export const en = {
 
     common: {
       requestService: "Request a Service ",
-      name:"motqen",
+      name:"MoُtQan",
     },
 
       "hero": {

@@ -193,8 +193,7 @@ export function Header() {
           group flex items-center gap-2  
           ${isMobile ? 'px-4 py-2 ' : 'px-5 py-2 text-sm'}
           text-white font-medium
-          bg-gradient-to-tr from-emerald-400 to-emerald-500
-          hover:from-teal-700  hover:to-emerald-600
+          bg-secondary  hover:bg-secondaryhover
           rounded-xl transition-all duration-300 ${fontClass}
           relative overflow-hidden shadow-lg hover:shadow-xl
           whitespace-nowrap
@@ -331,7 +330,7 @@ export function Header() {
               <span  >{i18n.language === 'ar' ? 'EN' : 'AR'}</span>
             </motion.button>
 
-            <div className="hidden lg:block">
+            <div className="hidden xl:block">
               {renderServiceButton()}
             </div>
 
@@ -361,7 +360,7 @@ export function Header() {
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.1 }}
       className={`
-        lg:hidden fixed top-20 left-0 right-0 z-50
+        md:hidden fixed top-20 left-0 right-0 z-50
         ${isDarkMode 
           ? 'bg-gray-900 border-t border-b border-gray-800' 
           : 'bg-white border-t border-b border-gray-200'}

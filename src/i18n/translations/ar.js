@@ -12,7 +12,7 @@ export const ar = {
     },
     common: {
       requestService: "إطلب خدمتك",
-      name: "متقن",
+      name: "مُـتّقَـن",
     },
 
       "hero": {

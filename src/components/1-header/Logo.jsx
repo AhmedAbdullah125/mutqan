@@ -37,7 +37,7 @@ export function Logo() {
         whileHover="hover"
         whileTap={{ scale: 0.95 }}
       >
-        <div className="relative p-1 rounded-xl bg-gradient-to-tr from-orange-600 to-orange-400">
+        <div className="relative p-1 rounded-xl bg-secondary">
           <motion.div
             variants={dropletVariants}
             animate="animate"
@@ -57,7 +57,7 @@ export function Logo() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <span className={`text-3xl font-bold font-cairo ${isDarkMode ? 'text-orange-400' : 'text-orange-500'}`}>
+          <span className={`text-4xl font-semibold  rakkas ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
             {t('common.name')}
           </span>
         </motion.div>

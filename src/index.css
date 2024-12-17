@@ -2,11 +2,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Rakkas&display=swap');
+
+
 
 /* Arabic Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600;700;800&display=swap');
 /* أو */
 @import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap');
+
+@import url('https://cdn.rawgit.com/ahmedmontaser12/crazynet/89a2750a/Bukra-Font.css');
 
 /* English Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
@@ -21,6 +26,83 @@
 @import 'tailwindcss/utilities';
 
 
+:root {
+
+  --primary-color: #1a86d3;
+  --secondary-color: #1892f7;
+  --tertiary-color: #4b4dd0;
+  --quaternary-color: #4b4dd0;
+  --quinary-color: #4b4dd0;
+  --primary-hover : #1892f7;
+  --secondary-hover : #0082ed;
+  --tertiary-hover : #4b4dd0;
+  --quaternary-hover : #4b4dd0;
+  --quinary-hover : #4b4dd0;
+
+}
+
+.primary {
+  color: var(--primary-color);
+}
+
+.primary:hover {
+  color: var(--primary-hover);
+}
+
+
+
+.bg-primary {
+ 
+  background: var(--primary-color);
+  color: #ffffff;
+}
+
+
+
+.bg-primaryhover {
+ 
+  background: var(--primary-hover);
+  color: #ffffff;
+}
+
+
+.secondary {
+  color: var(--secondary-color);
+}
+
+.bg-secondary {
+  background: var(--secondary-color);
+  color: #ffffff;
+}
+
+.bg-secondaryhover {
+  background: var(--secondary-hover);
+  color: #ffffff;
+}
+
+.secondary:hover {
+  color: var(--secondary-hover);
+}
+
+.tertiary {
+  color: var(--tertiary-color);
+}
+
+.bg-tertiary {  
+  background: var(--tertiary-color);
+  color: #ffffff;
+}
+
+
+.quaternary {
+  color: var(--quaternary-color);
+}
+
+.bg-quaternary {  
+  background: var(--quaternary-color);
+  color: #ffffff; 
+}
+
 
 
 .relaxed { 
@@ -31,7 +113,12 @@
   font-family: 'Cairo', sans-serif;
 }
 
-
+.rakkas {
+  font-family: 'Rakkas', sans-serif;
+  font-weight: 300;
+  filter: drop-shadow(0 2px 4px rgb(62, 123, 255));
+  
+}
 
 .line-lg { 
   line-height : 1.20;
