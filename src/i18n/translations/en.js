@@ -16,15 +16,14 @@ export const en = {
 
     common: {
       requestService: "Request a Service ",
-      name:"MoُtQan",
+      name:"Mutqan",
     },
 
       "hero": {
         "badge": "Your Trusted Digital Partner",
         "title": {
           "part1": "Complete Digital Solutions",
-          "part2": "for Your Business",
-          "part3": "Next Level"
+          "part2": "for Your Business ",
         },
         "description": "We are committed to providing you with solutions that build trust and take your business to the next level",
         "buttons": {

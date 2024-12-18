@@ -10,9 +10,8 @@ export default function BackgroundEffects() {
     <div className={`absolute inset-0 overflow-hidden ${
       isDarkMode ? 'bg-gray-900' : 'bg-gray-50'
     }`}>
-      <GridPattern />
       <CornerLights />
-      <FloatingSquares />
+     
     </div>
   );
 }

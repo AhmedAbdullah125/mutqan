@@ -94,7 +94,7 @@ function PartnersSlider() {
   return (
     <div className="">
       {/* Title Section */}
-      <h3 className={`text-sm md:text-md font-semibold  cairo text-center 
+      <h3 className={`text-sm md:text-md font-semibold  cairo text-center  mb-2 
          ${isDarkMode ? 'text-white' : 'text-gray-900'}
          ${isRTL ? 'md:text-right' : 'md:text-left'}`}>
         {t('ourPartners.title')}
@@ -102,7 +102,7 @@ function PartnersSlider() {
 
       {/* Navigation Buttons */}
       <div className="relative mt flex justify-center items-center sm:left-0 sm:right-0  md:-left-5 md:-right-5 flex-col items-center lg:w-fit">
-        <div className="relative flex justify-center sm:items-center lg:justify-start w-full">
+        <div className="relative flex justify-center items-center lg:justify-start w-full">
           <button
             onClick={() => navigateSlide(isRTL ? 1 : -1)}
             className={`w-10 h-10    flex items-center justify-center rounded-full transition-colors duration-200 shadow-lg
@@ -171,7 +171,7 @@ function PartnersSlider() {
         </div>
 
         {/* Pagination Dots */}
-        <div className="flex justify-center mt-3 gap-1">
+        <div className="flex justify-center mt-3  mb-6  sm:mb-10 md:mb-14 xl:mb-18  gap-1">
           {[...Array(totalSlides)].map((_, index) => (
             <motion.button
               key={index}

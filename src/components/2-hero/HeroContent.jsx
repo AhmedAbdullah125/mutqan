@@ -53,35 +53,39 @@ export default function HeroContent() {
       initial="hidden"
       animate="visible"
       className={`
-        max-w-7xl mx-0  sm:px-2  
+        max-w-7xl   sm:px-2  
         text-center ${isRTL ? 'md:text-right' : 'md:text-left'}
-        xl:pt-4 md:mt-14 sm:pt-4 xs:pt-3 lg:mt-6 md:px-0 xl:px-2  sm:px-4 xs:px-2 relative
+       sm:pt-4 xs:pt-1  md:px-0 xl:px-2  sm:px-4 xs:px-2 relative
       `}
     >
       <motion.h1
         variants={animations.item}
         className={`
            cairo 
-          
-          text-5xl sm:text-6xl md:text-4xl md:leading-tight  lg:text-5xl  xl:text-6xl 2xl:text-7xl
-          md:py-4 sm:py-2 mt-2 md:mt-0 lg:mt-12 xl:mt-6 2xl:mt-8
-          font-bold
-          ${isDarkMode ? 'text-white' : 'text-gray-900'}
+          text-5xl sm:text-6xl md:text-4xl  md:leading-tight  lg:text-5xl  xl:text-6xl 2xl:text-7xl
+          md:py-4  sm:py-2   
+          font-bold mb-3 
+          ${isDarkMode ? 'text-white' : 'text-black'}
         
         `}
       >
         <span className="line-lg">
-          {t('hero.title.part1')}{' '}
-          {t('hero.title.part2')}
-         
-          <span className={`
-            inline-block 
+          
+        <span className={`
+            block  sm:inline-block
+            ${isRTL ? 'mt-2' : 'mt-0 ' }
+            font-tajawal
             ${isDarkMode 
               ? 'secondary' 
               : 'primary'}
           `}>
-            {t('hero.title.part3')}
+            {t('common.name')}
+
           </span>
+          <span className='font-mono  sm:inline-block hidden' >{'،'}</span>
+          {t('hero.title.part1')}{' '}
+          {t('hero.title.part2')} 
+         
         </span>
       </motion.h1>
 

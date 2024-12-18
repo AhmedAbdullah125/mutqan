@@ -48,11 +48,9 @@ function MainLayout() {
         <LatestWorks />
         <About />
         <Steps />
-        
         <Testimonials />
         <LatestArticles />
         <Contact />
-        
         <Footer />
       </Suspense>
     </div>

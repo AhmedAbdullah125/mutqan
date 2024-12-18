@@ -1,4 +1,5 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { useRef, useState } from 'react';
 import { ShieldCheck } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../../Context/ThemeContext';
@@ -6,158 +7,199 @@ import BackgroundEffects from './BackgroundEffects';
 import HeroContent from './HeroContent';
 
 function HeroSection() {
-  const { isDarkMode } = useTheme();
   const { t } = useTranslation();
-  const { scrollY } = useScroll();
+  const { isDarkMode } = useTheme();
+  const sectionRef = useRef(null);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
-  // Main scroll animations
-  const badgeOpacity = useTransform(scrollY, [0, 100], [1, 0]);
-  const badgeY = useTransform(scrollY, [0, 100], [0, -50]);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"]
+  });
 
-  // Enhanced animation variants
-  const containerVariants = {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: {
+  // spring configuration
+  const springConfig = {
+    stiffness: 100,
+    damping: 30,
+    mass: 1
+  };
+
+  const scale = useSpring(
+    useTransform(scrollYProgress, [0, 0.5], [1, 0.95]),
+    springConfig
+  );
+
+  const y = useSpring(
+    useTransform(scrollYProgress, [0, 0.5], [0, -20]),
+    springConfig
+  );
+
+  // Smooth image loading animation
+  const imageAnimation = {
+    initial: { 
+      opacity: 0,
+      y: 16,
+      scale: 0.99
+    },
+    animate: { 
       opacity: 1,
+      y: 0,
       scale: 1,
-      transition: { 
-        staggerChildren: 0.3,
-        duration: 0.8
+      transition: {
+        type: "spring",
+        stiffness: 50,
+        damping: 30
       }
     }
   };
 
-  // Item animations with spring effect
-  const itemVariants = {
-    hidden: { opacity: 0, x: -50, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      scale: 1,
+  //  floating animation
+  const subtleFloat = {
+    animate: {
+      y: [0, -8, 0],
       transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 12
+        y: {
+          duration: 3,
+          repeat: Infinity,
+          repeatType: "mirror",
+          ease: [0.4, 0, 0.2, 1]
+        }
       }
     }
   };
 
-  // Enhanced 3D image animations
-  const imageVariants = {
-    hidden: { opacity: 0, scale: 0.9, rotateY: -20 },
-    visible: {
-      opacity: 1,
+  //  corner decorations
+  const cornerVariants = {
+    initial: { 
+      scale: 0.9,
+      opacity: 0 
+    },
+    animate: { 
       scale: 1,
-      rotateY: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 60,
+        damping: 50,
+        delay: 0.2
+      }
+    }
+  };
+
+  //  badge animation
+  const badgeAnimation = {
+    initial: { 
+      y: -30,
+      opacity: 0 
+    },
+    animate: { 
+      y: 0,
+      opacity: 1,
       transition: {
         type: "spring",
         stiffness: 100,
-        damping: 15
+        damping: 50
       }
     }
   };
 
   return (
-    <section id='home' className="relative overflow-hidden  py-2 md:py-6 lg:py-20 xl:py-4 2xl:py-10  ">
+    <section ref={sectionRef} className="min-h-screen relative overflow-hidden">
       <BackgroundEffects />
 
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 xl:px-0  ">
-        {/* Floating Badge with 3D Effect */}
-        <motion.div
-          style={{ opacity: badgeOpacity, y: badgeY }}
-          className="relative top-16  sm:top-18 md:top-18 lg:top-20  xl:top-20  mb-2 sm:mb-0 md:mb-2 lg:mb-0 xl:mb-7  z-50 flex justify-center"
-        >
-          <motion.div
-            variants={itemVariants}
-            initial="hidden"
-            animate="visible"
-            whileHover={{ scale: 1.05 }}
-            className={`
-              inline-flex items-center gap-2
-              px-4 py-2 sm:px-3 sm:py-1.5
-              rounded-full shadow-lg
-              backdrop-blur-sm
-              transition-all duration-300
-              ${isDarkMode 
-                ? 'bg-gray-800/90 border border-white/10' 
-                : 'bg-white/90 border border-black/5'}
-            `}
-          >
-            <ShieldCheck className={`
-             
-              w-4 h-4             
-              ${isDarkMode ? 'text-orange-400' : 'text-orange-500'}
-            `} />
-            <span className={`
-              text-sm  cairo
-              ${isDarkMode ? 'text-white/90' : 'text-black/90'}
-            `}>
-              {t('hero.badge')}
-            </span>
-          </motion.div>
-        </motion.div>
-
-        {/* Main Content Grid */}
-        <div className="  ">
-          <motion.div 
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-2 items-center"
-          >
-            {/* Content Column */}
+      <motion.div 
+        style={{ scale, y }}
+        className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24"
+      >
+        <div className="flex flex-col max-w-8xl mx-auto">
+          <div className="flex flex-col">
+            {/* Badge */}
             <motion.div 
-              variants={itemVariants}
-              className="order-2 md:order-1"
+              className="flex justify-center w-full"
+              variants={badgeAnimation}
+              initial="initial"
+              animate="animate"
             >
-              <HeroContent />
-            </motion.div>
-
-            {/* Image Column with 3D Effects */}
-            <motion.div 
-              variants={imageVariants}
-              className="order-1  lg:order-2 m-2  mt-20 sm:mt-24 md:mt-16  lg:mt-0 xl:mt-14 md:mt-24 lg:mt-20 xl:mt-24"
-            >
-              <div className="relative h-full w-full aspect-square xs:aspect-[8/7] sm:aspect-[8/7] md:aspect-[8/7] lg:aspect-[8/6] xl:aspect-[8/7]   ">
-                <div className="absolute inset-0 p-2 lg:p-4">
-                  {/* Animated Corner Decorations */}
-                  <motion.div 
-                    animate={{ 
-                      scale: [1, 1.1, 1],
-                      rotate: [0, 2, 0],
-                      transition: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-                    }}
-                    className="absolute top-0 right-0 w-16 h-16 lg:w-20 lg:h-20 border-r-4 border-t-4 rounded-xl border-sky-500/40 rounded-tr-3xl"
-                  />
-                  <motion.div 
-                    animate={{ 
-                      scale: [1, 1.1, 1],
-                      rotate: [0, -5, 0],
-                      transition: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 2 }
-                    }}
-                    className="absolute bottom-0 left-0 w-16 h-16 lg:w-20 lg:h-20 border-l-4 border-b-4 rounded-xl border-sky-500/40 rounded-bl-3xl"
-                  />
-
-                  {/* Main Image with Hover Effect */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    whileHover={{ scale: 1.02 }}
-                    className="relative h-full rounded-2xl overflow-hidden shadow-2xl"
-                  >
-                    <img
-                      src="../../../Public/assets/hero2.png"
-                      alt="Hero Image"
-                      className="w-full h-full object-cover object-center rounded-2xl"
-                    />
-                  </motion.div>
+              <div className="custom-badge sm:mb-8 xs:mb-7 md:mb-0 xs:mt-6 sm:mt-4 md:mt-0">
+                <div className={`
+                  badge-content
+                  inline-flex items-center gap-1.5 
+                  border border-blue-500/20
+                  px-3 py-2
+                  backdrop-blur-xl
+                  ${isDarkMode ? 'bg-gray-900/40 text-white' : 'bg-white/40 text-black'}
+                `}>
+                  <ShieldCheck className={`
+                    w-4 h-5 z-10 
+                    ${isDarkMode ? 'text-blue-400' : 'text-blue-500'}
+                  `} />
+                  <span className="z-10 font-cairo text-sm font-medium whitespace-nowrap">
+                    {t('hero.badge')}
+                  </span>
+                  <div className="hover-effect">
+                    <div className="gradient-circle"></div>
+                  </div>
                 </div>
               </div>
             </motion.div>
-          </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-4">
+              <motion.div className="order-1 md:order-2 relative">
+                <motion.div 
+                  variants={imageAnimation}
+                  initial="initial"
+                  animate={imageLoaded ? "animate" : "initial"}
+                  className="relative"
+                >
+                  {/* corner decorations */}
+                  <motion.div 
+                    variants={cornerVariants}
+                    className={`
+                      absolute -top-3 -right-3 w-24 h-24
+                      border-t-3 border-r-3
+                      ${isDarkMode ? 'border-blue-500' : 'border-blue-500'}
+                      rounded-tr-3xl
+                    `}
+                  />
+                  
+                  <motion.div 
+                    variants={cornerVariants}
+                    className={`
+                      absolute -bottom-3 -left-3 w-24 h-24
+                      border-b-3 border-l-3
+                      ${isDarkMode ? 'border-blue-500' : 'border-blue-500'}
+                      rounded-bl-3xl
+                    `}
+                  />
+
+                  <motion.div
+                    variants={subtleFloat}
+                    animate="animate"
+                    className="relative p-2 md:mt-12 md:p-2 lg:p-8 lg:mt-10 xl:p-14 aspect-w-16 2xl:aspect-h-16 2xl:p-6 2xl:m-16"
+                  >
+                    <img
+                      src="../../../Public/assets/her000.png"
+                      alt="Hero"
+                      className="w-full h-full object-cover object-center rounded-xl shadow-lg"
+                      loading="eager"
+                      onLoad={() => setImageLoaded(true)}
+                    />
+                  </motion.div>
+                </motion.div>
+              </motion.div>
+
+              <motion.div 
+                className="order-2 md:order-1"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <HeroContent />
+              </motion.div>
+            </div>
+          </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

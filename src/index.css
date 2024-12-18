@@ -27,20 +27,37 @@
 
 
 :root {
-
+  /* Base Colors */
   --primary-color: #1a86d3;
   --secondary-color: #1892f7;
   --tertiary-color: #4b4dd0;
   --quaternary-color: #4b4dd0;
   --quinary-color: #4b4dd0;
-  --primary-hover : #1892f7;
-  --secondary-hover : #0082ed;
-  --tertiary-hover : #4b4dd0;
-  --quaternary-hover : #4b4dd0;
-  --quinary-hover : #4b4dd0;
 
+  /* Hover States */
+  --primary-hover: #1892f7;
+  --secondary-hover: #0082ed;
+  --tertiary-hover: #4b4dd0;
+  --quaternary-hover: #4b4dd0;
+  --quinary-hover: #4b4dd0;
+
+  /* Gradient Combinations */
+  --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  --gradient-secondary: linear-gradient(135deg, var(--secondary-color), var(--tertiary-color));
+  --gradient-accent: linear-gradient(135deg, var(--primary-color), var(--tertiary-color));
+  
+  /* Hover Gradient Combinations */
+  --gradient-primary-hover: linear-gradient(135deg, var(--primary-hover), var(--secondary-hover));
+  --gradient-secondary-hover: linear-gradient(135deg, var(--secondary-hover), var(--tertiary-hover));
+  
+
+  
+  /* Glass Effect Colors */
+  --glass-primary: rgba(26, 134, 211, 0.1);
+  --glass-secondary: rgba(24, 146, 247, 0.1);
 }
 
+/* Base Classes */
 .primary {
   color: var(--primary-color);
 }
@@ -49,23 +66,52 @@
   color: var(--primary-hover);
 }
 
-
-
+/* Background Classes */
 .bg-primary {
- 
   background: var(--primary-color);
   color: #ffffff;
 }
 
+.bg-primary-gradient {
+  background: var(--gradient-primary);
+  color: #ffffff;
+}
 
+.bg-multi-gradient {
+  background: var(--gradient-multi);
+  color: #ffffff;
+}
 
+/* Glass Effect Classes */
+.glass-primary {
+  background: var(--glass-primary);
+  -webkit-backdrop-filter: blur(10px); 
+   backdrop-filter: blur(10px);
+
+}
+
+.glass-secondary {
+  background: var(--glass-secondary);
+  -webkit-backdrop-filter: blur(10px); 
+   backdrop-filter: blur(10px);
+}
+
+/* Hover Effects */
 .bg-primaryhover {
- 
   background: var(--primary-hover);
   color: #ffffff;
 }
 
+.bg-gradient-hover {
+  background: var(--gradient-primary);
+  transition: backgroun 0.3s ease;
+}
 
+.bg-gradient-hover:hover {
+  background: var(--gradient-primary-hover);
+}
+
+/* Additional Classes */
 .secondary {
   color: var(--secondary-color);
 }
@@ -88,19 +134,73 @@
   color: var(--tertiary-color);
 }
 
-.bg-tertiary {  
+.bg-tertiary {
   background: var(--tertiary-color);
   color: #ffffff;
 }
-
 
 .quaternary {
   color: var(--quaternary-color);
 }
 
-.bg-quaternary {  
+.bg-quaternary {
   background: var(--quaternary-color);
-  color: #ffffff; 
+  color: #ffffff;
+}
+
+
+.custom-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5rem;
+  transition: all 0.03s;
+  font-weight: bold;
+  
+  z-index: 0;
+  box-shadow: 0 0px 7px -5px rgba(0, 0, 0, 0.5);
+}
+
+.badge-content {
+  position: relative;
+  z-index: 2;
+  border-radius: 10rem;
+  
+}
+
+.hover-effect {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.hover-effect div {
+  background: linear-gradient(
+    90deg,
+    rgba(54, 135, 235, 0.967) 0%,
+    rgba(0, 175, 244, 0.719) 49%,
+    rgb(70, 19, 254) 100%
+  );
+  border-radius: 20rem;
+  width: 20rem;
+  height: 20rem;
+  filter: blur(10px);
+  animation: rotate-effect infinite 5s linear;
+  opacity: 0.3;
+}
+
+@keyframes rotate-effect {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 
@@ -113,22 +213,49 @@
   font-family: 'Cairo', sans-serif;
 }
 
-.rakkas {
-  font-family: 'Rakkas', sans-serif;
-  font-weight: 300;
-  filter: drop-shadow(0 2px 4px rgb(62, 123, 255));
-  
-}
 
 .line-lg { 
   line-height : 1.20;
 }
 
 
-
-.color {
-  color:#4b4dd0;
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
 }
+
+@keyframes gentle-float {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+}
+
+@keyframes gentle-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1) translate(-50%, -50%); }
+  50% { transform: scale(1.05) translate(-50%, -50%); }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 8s ease-in-out infinite;
+}
+
+.animate-gentle-float {
+  animation: gentle-float 10s ease-in-out infinite;
+}
+
+.animate-gentle-spin {
+  animation: gentle-spin 30s linear infinite;
+}
+
+.animate-breathe {
+  animation: breathe 12s ease-in-out infinite;
+}
+
+
 
 @keyframes border-glow {
   0% {

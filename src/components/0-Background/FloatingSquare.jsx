@@ -10,13 +10,11 @@ const COLLISION_DISTANCE = 60;
 export default function FloatingSquares() {
   const { isDarkMode } = useTheme();
   
-  // تحديد اتجاه الصفحة (RTL أو LTR)
   const isRTL = document.documentElement.dir === 'rtl';
 
   const [squares, setSquares] = useState(() => 
     Array(SQUARE_COUNT).fill(null).map((_, i) => ({
       id: i,
-      // المربعات تبدأ من مكان عشوائي
       x: Math.random() * window.innerWidth, 
       y: Math.random() * window.innerHeight,
       size: i < 2 ? LARGE_SQUARE_SIZE : DEFAULT_SQUARE_SIZE,
@@ -84,19 +82,19 @@ export default function FloatingSquares() {
   }, []);
 
   return (
-    <div className="absolute inset-0">
+    <div className="absolute inset-0 ">
       {squares.map((square) => (
         <motion.div
           key={square.id}
           animate={{
-            x: square.x * (isRTL ? -1 : 1), // عكس الحركة على المحور x في حالة RTL
+            x: square.x * (isRTL ? -1 : 1), 
             y: square.y,
             rotate: square.rotation,
           }}
           transition={{
             type: "tween",
             duration: 0.016,
-            ease: "easeInOut"  // تحسين السلاسة باستخدام tween و ease
+            ease: "easeInOut"  
           }}
           style={{
             width: square.size,

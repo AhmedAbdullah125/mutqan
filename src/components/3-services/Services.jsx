@@ -10,8 +10,12 @@ const ServiceCard = ({ icon: Icon, title, description, link, index }) => {
   const [isHovered, setIsHovered] = useState(false);
   const { isDarkMode } = useTheme();
 
+  const handleClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-  <motion.div
+    <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -20,43 +24,42 @@ const ServiceCard = ({ icon: Icon, title, description, link, index }) => {
       onMouseLeave={() => setIsHovered(false)}
       className={`relative p-6 font-cairo rounded-xl backdrop-blur-xl border ${
         isDarkMode ? 'border-white/10' : 'border-black/5'
-      } overflow-hidden group hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-300`}
+      } overflow-hidden group hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300`}
     >
-      {/* تأثير التوهج عند التحويم */}
       <motion.div
         animate={{
           opacity: isHovered ? 1 : 0,
           scale: isHovered ? 1.1 : 1,
         }}
-        className={`absolute inset-0  bg-gradient-to-br ${
+        className={`absolute inset-0 bg-gradient-to-br ${
           isDarkMode 
-            ? 'from-emerald-500/20 via-transparent to-yellow-500/20'
-            : 'from-emerald-200/30 via-transparent to-yellow-200/30'
+            ? 'from-blue-400/20 via-sky-500/20 to-indigo-400/20'
+            : 'from-blue-300/30 via-sky-400/20 to-indigo-300/20'
         } blur-xl`}
       />
 
-      <div className={`absolute inset-0   transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
+      <div className={`absolute inset-0 transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
         <div className={`absolute inset-0 bg-gradient-to-br ${
           isDarkMode 
-            ? 'from-emerald-500/20 via-emerald-400/20 to-yellow-400/20' 
-            : 'from-emerald-200/40 via-emerald-100/40 to-yellow-200/40'
+            ? 'from-blue-400/20 via-sky-500/20 to-indigo-400/20'
+            : 'from-blue-300/30 via-sky-400/20 to-indigo-300/20'
         } blur-xl`} />
       </div>
 
-      <Link to={link} className="relative z-10">
+      <Link to={link} onClick={handleClick} className="relative z-10">
         <div className="mb-6 relative flex justify-center">
           <div className={`w-16 h-16 rounded-xl ${
             isDarkMode
-              ? 'bg-gradient-to-br from-emerald-500 to-yellow-400'
-              : 'bg-gradient-to-br from-emerald-400 to-yellow-300'
+              ? 'bg-gradient-to-br from-blue-400 to-sky-500'
+              : 'bg-gradient-to-br from-blue-500 to-sky-500'
           } p-0.5`}>
             <div className={`w-full h-full ${
               isDarkMode ? 'bg-gray-950' : 'bg-white'
             } rounded-xl flex items-center justify-center`}>
               <Icon className={`w-8 h-8 ${
                 isDarkMode 
-                  ? 'text-emerald-400 group-hover:text-yellow-400' 
-                  : 'text-emerald-600 group-hover:text-yellow-600'
+                  ? 'text-blue-400 group-hover:text-sky-400'
+                  : 'text-blue-600 group-hover:text-sky-600'
               } transition-colors`} />
             </div>
           </div>
@@ -66,8 +69,8 @@ const ServiceCard = ({ icon: Icon, title, description, link, index }) => {
           isDarkMode ? 'text-white' : 'text-gray-900'
         } group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r ${
           isDarkMode 
-            ? 'from-emerald-400 to-yellow-400'
-            : 'from-emerald-600 to-yellow-600'
+            ? 'from-blue-400 to-sky-400'
+            : 'from-blue-600 to-sky-600'
         } transition-all duration-300`}>
           {title}
         </h3>
@@ -83,8 +86,8 @@ const ServiceCard = ({ icon: Icon, title, description, link, index }) => {
         isDarkMode ? 'border-white/10' : 'border-gray-200'
       } rounded-xl ${
         isDarkMode 
-          ? 'group-hover:border-emerald-500/50'
-          : 'group-hover:border-emerald-400/50'
+          ? 'group-hover:border-blue-500/50'
+          : 'group-hover:border-sky-400/50'
       } transition-colors duration-300`} />
     </motion.div>
   );
@@ -112,7 +115,6 @@ const Services = () => {
   ];
 
   return (
-    
     <section
       id="services"
       className={`relative py-8 overflow-hidden ${
@@ -128,13 +130,13 @@ const Services = () => {
       <div className="absolute inset-0">
         <div className={`absolute inset-0 bg-gradient-to-t ${
           isDarkMode 
-            ? 'from-transparent via-indigo-500/5 to-transparent'
-            : 'from-transparent via-indigo-200/10 to-transparent'
+            ? 'from-transparent via-blue-500/5 to-transparent'
+            : 'from-transparent via-blue-200/10 to-transparent'
         } transform rotate-30 blur-3xl animate-pulse-slow`} />
         <div className={`absolute inset-0 bg-gradient-to-b ${
           isDarkMode 
-            ? 'from-transparent via-purple-500/5 to-transparent'
-            : 'from-transparent via-purple-200/10 to-transparent'
+            ? 'from-transparent via-sky-500/5 to-transparent'
+            : 'from-transparent via-sky-200/10 to-transparent'
         } transform -rotate-50 blur-3xl animate-pulse-slower`} />
       </div>
 
@@ -157,8 +159,8 @@ const Services = () => {
             viewport={{ once: true }}
             className={`h-1 bg-gradient-to-r ${
               isDarkMode 
-                ? 'from-emerald-500 via-blue-500 to-emerald-500'
-                : 'from-emerald-400 via-blue-400 to-emerald-400'
+                ? 'from-blue-500 via-sky-500 to-blue-500'
+                : 'from-blue-500 via-sky-500 to-blue-500'
             } mx-auto rounded-full mb-4`}
           />
 
@@ -178,10 +180,11 @@ const Services = () => {
         <div className="mt-6 md:mt-6 sm:mt-4 text-center">
           <Link
             to="/all-services"
-            className={`inline-flex  items-center gap-1.5 px-6 py-2 ${
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className={`inline-flex items-center gap-1.5 px-6 py-2 ${
               isDarkMode
-                ? 'bg-gradient-to-r from-yellow-400 to-emerald-600'
-                : 'bg-gradient-to-r from-yellow-500 to-emerald-700'
+                ? 'bg-gradient-to-r from-blue-500 to-sky-600'
+                : 'bg-gradient-to-r from-blue-600 to-sky-700'
             } text-white rounded-md transition-all hover:scale-105`}
           >
             <span className="font-cairo text-md">
