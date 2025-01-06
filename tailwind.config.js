@@ -9,10 +9,6 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
-     
-    
-
-
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(var(--tw-gradient-stops))',
@@ -25,23 +21,15 @@ export default {
         cairo: ['Cairo', 'sans-serif'],
         tajawal: ['Tajawal', 'sans-serif'],
         poppins: ['Poppins', 'sans-serif'],
-        roboto: ['Roboto', 'sans-serif'],
-        inter: ['Inter', 'sans-serif'],
         montserrat: ['Montserrat', 'sans-serif'],
-        ibm: ['IBM Plex Sans', 'sans-serif'],
-        nunito: ['Nunito', 'sans-serif'],
-        rakkas: ['Rakkas', 'sans-serif'],
-        bukra: ['Bukra', 'sans-serif'],
-        noto: ['Noto Kufi Arabic', 'sans-serif'],
-        almarai: ['Almarai', 'sans-serif'],
-      },
-    
-
       
+      },
       borderRadius: {
         '4xl': '2rem',
         '5xl': '2.5rem',
       },
+
+      
       animation: {
         'pulse-border': 'pulse-border 6s ease-in-out infinite',
         blob: 'blob 7s infinite',
@@ -52,19 +40,11 @@ export default {
         fly: 'fly 0.6s ease-in-out infinite alternate',
         morph: 'morph 8s ease-in-out infinite',
         shimmer: 'shimmer 3s linear infinite',
-        bounce3D: 'bounce3D 4s ease-in-out infinite',
-        glowPulse: 'glowPulse 2s ease-in-out infinite',
-        floatShadow: 'floatShadow 6s ease-in-out infinite',
-        spinGlow: 'spinGlow 3s linear infinite',
-        ripple: 'ripple 3s linear infinite',
-        levitate: 'levitate 5s ease-in-out infinite',
-        'grid-flow': 'grid-flow 20s linear infinite',
-        'grid-flow-light': 'grid-flow-light 20s linear infinite',
-        'glow-pulse': 'glow-pulse 10s ease-in-out infinite',
-        'glow-pulse-light': 'glow-pulse-light 10s ease-in-out infinite',
-        'core-pulse': 'core-pulse 4s ease-in-out infinite',
-        'core-pulse-light': 'core-pulse-light 4s ease-in-out infinite',
-        'gradient-xy': 'gradient-xy 15s ease infinite',
+        'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
+        'glow-pulse-light': 'glow-pulse-light 3s ease-in-out infinite',
+        'glow-pulse-dark': 'glow-pulse-dark 3s ease-in-out infinite',
+        'glow-pulse-very-dark': 'glow-pulse-very-dark 3s ease-in-out infinite',
+        'glow-pulse-very-dark-2': 'glow-pulse-very-dark-2 3s ease-in-out infinite',
 
 
       },

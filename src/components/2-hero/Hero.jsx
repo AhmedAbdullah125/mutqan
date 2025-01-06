@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import { ShieldCheck } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../../Context/ThemeContext';
-import BackgroundEffects from './BackgroundEffects';
+import BackgroundEffects from '../0-Background/BackgroundEffects';
 import HeroContent from './HeroContent';
 
 function HeroSection() {
@@ -19,18 +19,18 @@ function HeroSection() {
 
   // spring configuration
   const springConfig = {
-    stiffness: 100,
-    damping: 30,
+    stiffness: 500,
+    damping: 200,
     mass: 1
   };
 
   const scale = useSpring(
-    useTransform(scrollYProgress, [0, 0.5], [1, 0.95]),
+    useTransform(scrollYProgress, [0, .8], [1, 0.95]),
     springConfig
   );
 
   const y = useSpring(
-    useTransform(scrollYProgress, [0, 0.5], [0, -20]),
+    useTransform(scrollYProgress, [0, 0.1], [0, -30]),
     springConfig
   );
 
@@ -38,8 +38,7 @@ function HeroSection() {
   const imageAnimation = {
     initial: { 
       opacity: 0,
-      y: 16,
-      scale: 0.99
+      y: 10,
     },
     animate: { 
       opacity: 1,
@@ -47,8 +46,8 @@ function HeroSection() {
       scale: 1,
       transition: {
         type: "spring",
-        stiffness: 50,
-        damping: 30
+        stiffness: 200,
+        damping: 100
       }
     }
   };
@@ -56,7 +55,7 @@ function HeroSection() {
   //  floating animation
   const subtleFloat = {
     animate: {
-      y: [0, -8, 0],
+      y: [0, -10, 0],
       transition: {
         y: {
           duration: 3,
@@ -104,27 +103,27 @@ function HeroSection() {
   };
 
   return (
-    <section ref={sectionRef} className="min-h-screen relative overflow-hidden">
-      <BackgroundEffects />
+    <section id='home' ref={sectionRef} className="h-full  md:h-screen w-full relative overflow-hidden">
+      <BackgroundEffects  />
 
       <motion.div 
         style={{ scale, y }}
         className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24"
       >
         <div className="flex flex-col max-w-8xl mx-auto">
-          <div className="flex flex-col">
+          <div className="flex flex-col ">
             {/* Badge */}
             <motion.div 
-              className="flex justify-center w-full"
+              className="flex  justify-center w-full"
               variants={badgeAnimation}
               initial="initial"
               animate="animate"
             >
-              <div className="custom-badge sm:mb-8 xs:mb-7 md:mb-0 xs:mt-6 sm:mt-4 md:mt-0">
+              <div className="custom-badge xs:mb-6 sm:mb-8 xs:mb-7 md:mb-0 xs:mt-6 sm:mt-4 md:mt-0">
                 <div className={`
                   badge-content
                   inline-flex items-center gap-1.5 
-                  border border-blue-500/20
+                  border border-violet-500/30
                   px-3 py-2
                   backdrop-blur-xl
                   ${isDarkMode ? 'bg-gray-900/40 text-white' : 'bg-white/40 text-black'}
@@ -133,7 +132,7 @@ function HeroSection() {
                     w-4 h-5 z-10 
                     ${isDarkMode ? 'text-blue-400' : 'text-blue-500'}
                   `} />
-                  <span className="z-10 font-cairo text-sm font-medium whitespace-nowrap">
+                  <span className="z-10 font-cairo text-sm font-medium ">
                     {t('hero.badge')}
                   </span>
                   <div className="hover-effect">
@@ -178,7 +177,7 @@ function HeroSection() {
                     className="relative p-2 md:mt-12 md:p-2 lg:p-8 lg:mt-10 xl:p-14 aspect-w-16 2xl:aspect-h-16 2xl:p-6 2xl:m-16"
                   >
                     <img
-                      src="../../../Public/assets/her000.png"
+                      src="/assets/her000.png"
                       alt="Hero"
                       className="w-full h-full object-cover object-center rounded-xl shadow-lg"
                       loading="eager"
@@ -201,6 +200,7 @@ function HeroSection() {
         </div>
       </motion.div>
     </section>
+    
   );
 }
 

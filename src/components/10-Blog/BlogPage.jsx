@@ -1,15 +1,11 @@
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Search, Filter, X } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
+import { Search } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { useTheme } from '../../Context/ThemeContext';
-import { Header } from '../1-header/Header';
-import  Footer  from '../9-Footer/Footer';
 import ArticleCard from './ArticleCard';
 import { articles, blogCategories, blogTags } from './Data';
 
 const BlogPage = () => {
-  const { t } = useTranslation();
   const { isDarkMode } = useTheme();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -47,14 +43,13 @@ const BlogPage = () => {
 
   return (
     <>
-      <Header />
-      <div className={`min-h-screen font-cairo ${isDarkMode ? 'bg-gray-950' : 'bg-gray-50'}`}>
+      <div className={`min-h-screen mt-20 font-cairo ${isDarkMode ? 'bg-gray-950' : 'bg-gray-50'}`}>
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="relative py-16"
         >
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto  px-4">
             <motion.h1 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -181,7 +176,6 @@ const BlogPage = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

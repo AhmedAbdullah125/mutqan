@@ -1,118 +1,209 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useEffect, useCallback, memo, useRef } from 'react';
+import { motion, AnimatePresence, useMotionValue } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { useTheme } from '../../Context/ThemeContext'; // استخدام الثيم
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useTheme } from '../../Context/ThemeContext';
+import { testimonialsData } from './testimonialsdata';
+import TestimonialCard from './TestimonialCard';
+import CornerLights from '../0-Background/CornerLights';
+
+const slideVariants = {
+  enter: (direction) => ({
+    x: direction > 0 ? '100%' : '-100%',
+    opacity: 0,
+    scale: 0.8,
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+    scale: 1,
+  },
+  exit: (direction) => ({
+    x: direction < 0 ? '100%' : '-100%',
+    opacity: 0,
+    scale: 0.8,
+  }),
+};
 
 const Testimonials = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { isDarkMode } = useTheme();
+  const containerRef = useRef(null);
+  const dragX = useMotionValue(0);
+  const isRTL = i18n.dir() === 'rtl';
 
-  const testimonials = [
-    { name: t('testimonials.ahmedName'), role: t('testimonials.ahmedRole'), text: t('testimonials.ahmedText'), image: '/Public/assets/ahmed.jpg' },
-    { name: t('testimonials.sarahName'), role: t('testimonials.sarahRole'), text: t('testimonials.sarahText'), image: '/Public/assets/ahmed.jpg' },
-    { name: t('testimonials.fahadName'), role: t('testimonials.fahadRole'), text: t('testimonials.fahadText'), image: '/Public/assets/ahmed.jpg' },
-    { name: t('testimonials.nouraName'), role: t('testimonials.nouraRole'), text: t('testimonials.nouraText'), image: '/Public/assets/ahmed.jpg' },
-    { name: t('testimonials.khaledName'), role: t('testimonials.khaledRole'), text: t('testimonials.khaledText'), image: '/Public/assets/ahmed.jpg' },
-    { name: t('testimonials.mohamedName'), role: t('testimonials.mohamedRole'), text: t('testimonials.mohamedText'), image: '/Public/assets/ahmed.jpg' },
-    { name: t('testimonials.monaName'), role: t('testimonials.monaRole'), text: t('testimonials.monaText'), image: '/Public/assets/ahmed.jpg' },
-    { name: t('testimonials.laylaName'), role: t('testimonials.laylaRole'), text: t('testimonials.laylaText'), image: '/Public/assets/ahmed.jpg' },
-    { name: t('testimonials.yasserName'), role: t('testimonials.yasserRole'), text: t('testimonials.yasserText'), image: '/Public/assets/ahmed.jpg' },
-    { name: t('testimonials.aliName'), role: t('testimonials.aliRole'), text: t('testimonials.aliText'), image: '/Public/assets/ahmed.jpg' },
-    { name: t('testimonials.zahraName'), role: t('testimonials.zahraRole'), text: t('testimonials.zahraText'), image: '/Public/assets/ahmed.jpg' },
-    { name: t('testimonials.osmanName'), role: t('testimonials.osmanRole'), text: t('testimonials.osmanText'), image: '/Public/assets/ahmed.jpg' },
-  ];
+  const [state, setState] = useState({
+    currentIndex: 0,
+    direction: 1,
+    itemsPerView: typeof window !== 'undefined' ? (window.innerWidth < 640 ? 1 : 2) : 2,
+    isAnimating: false
+  });
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const totalPages = Math.ceil(testimonialsData.length / state.itemsPerView);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 3) % testimonials.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [testimonials.length]);
+  const getCurrentTestimonials = useCallback(() => {
+    const startIndex = state.currentIndex * state.itemsPerView;
+    return testimonialsData
+      .slice(startIndex, startIndex + state.itemsPerView)
+      .map(item => ({
+        ...item,
+        name: item.name[i18n.language],
+        role: item.role[i18n.language],
+        text: item.text[i18n.language],
+        location: item.location[i18n.language],
+        date: item.date[i18n.language]
+      }));
+  }, [state.currentIndex, state.itemsPerView, i18n.language]);
 
-  const testimonialsToDisplay = [
-    testimonials[currentIndex % testimonials.length],
-    testimonials[(currentIndex + 1) % testimonials.length],
-    testimonials[(currentIndex + 2) % testimonials.length],
-  ];
+  const handleSlideChange = useCallback((direction) => {
+    if (state.isAnimating) return;
+    
+    const adjustedDirection = isRTL ? -direction : direction;
+    
+    setState(prev => ({
+      ...prev,
+      isAnimating: true,
+      direction: direction,
+      currentIndex: (prev.currentIndex + adjustedDirection + totalPages) % totalPages
+    }));
 
-  const handleDotClick = (index) => {
-    setCurrentIndex(index);
+    setTimeout(() => {
+      setState(prev => ({ ...prev, isAnimating: false }));
+    }, 500);
+  }, [totalPages, state.isAnimating, isRTL]);
+
+  const handleDragEnd = (event, info) => {
+    const offset = info.offset.x;
+    const dragThreshold = 50;
+    
+    if (Math.abs(offset) > dragThreshold) {
+      const direction = offset > 0 ? -1 : 1;
+      handleSlideChange(direction);
+    }
   };
 
-  return (
-    <section
-      id="testimonials"
-      className={`py-10 relative overflow-hidden ${isDarkMode ? 'bg-gray-900' : 'bg-gray-100'}`}
-    >
-      {/* تأثيرات الخلفية */}
-      <div className={`absolute inset-0 ${isDarkMode ? 'bg-gradient-to-br from-black to-gray-800 opacity-30' : 'bg-gradient-to-br from-gray-200 to-gray-100 opacity-40'}`} />
+  
 
-      <div className="container mx-auto cairo px-4 relative">
-        {/* العنوان */}
-        <div className="text-center mb-6">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className={`text-3xl font-bold mb-3 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
-          >
+  useEffect(() => {
+    const handleResize = () => {
+      setState(prev => ({
+        ...prev,
+        itemsPerView: window.innerWidth < 640 ? 1 : 2
+      }));
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const renderNavigationButton = (direction) => (
+    <button
+      onClick={() => handleSlideChange(direction)}
+      className={`absolute top-1/2 -translate-y-1/2 z-10 
+        w-12 h-12 flex items-center justify-center rounded-full 
+        bg-white/90 shadow-lg
+        ${isDarkMode ? 'text-gray-800' : 'text-gray-900'}`}
+      style={{
+        [direction > 0 ? 'right' : 'left']: '0rem'
+      }}
+    >
+      {isRTL ? 
+        (direction > 0 ? <ChevronRight className="w-6 h-6" /> : <ChevronLeft className="w-6 h-6" />) :
+        (direction > 0 ? <ChevronRight className="w-6 h-6" /> : <ChevronLeft className="w-6 h-6" />)
+      }
+    </button>
+  );
+
+  return (
+    <section className={`py-10 relative cairo overflow-hidden ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'}`}>
+        <div className="absolute inset-0 opacity-50 w-full h-full" style={{ contain: 'layout paint size', willChange: 'transform' }}>
+          <CornerLights />
+        </div>
+  
+      <div className="container mx-auto px-4 relative">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <h2 className={`text-4xl font-bold mb-3 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
             {t('testimonials.title')}
-          </motion.h2>
-        
+          </h2>
           <motion.div
             initial={{ width: 0 }}
             whileInView={{ width: '4rem' }}
-            viewport={{ once: true }}
-            className={`h-1 bg-gradient-to-r ${
-              isDarkMode 
-                ? 'from-emerald-500 via-blue-500 to-emerald-500'
-                : 'from-emerald-400 via-blue-400 to-emerald-400'
-            } mx-auto rounded-full mb-4`}
+            transition={{ duration: 0.6 }}
+            className="h-1 bg-gradient-to-r from-blue-500 to-blue-700 mx-auto rounded-full mb-4"
           />
-          <p className={`mt-4 ${isDarkMode ? 'text-gray-400' : 'text-gray-700'}`}>{t('testimonials.description')}</p>
-        </div>
+           <p className={`mt-4 text-lg ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+            {t('testimonials.description')}
+          </p>
+        </motion.div>
 
-        {/* عرض الآراء */}
-        <div className="grid mb-3 grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonialsToDisplay.map((testimonial, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              className={`p-6 rounded-xl shadow-lg text-center space-y-3 mt-8 align-middle hover:shadow-2xl hover:shadow-emerald-100/20  cursor-pointer  transition-transform transform hover:scale-105 ${isDarkMode ? 'bg-gray-800 border-gray-700 text-gray-300' : 'bg-white border-gray-300 text-gray-800'} border-2`}
-            >
-              <img
-                src={testimonial.image}
-                alt={testimonial.name}
-                className="w-24 h-24 mx-auto image-cover object-cover  rounded-full border-2 border-emerald-300 shadow-lg shadow-emerald-100/50 transition-transform transform hover:scale-105 overflow-hidden mt-[-50px]"
-              />
-              <h3 className={`text-xl font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{testimonial.name}</h3>
-              <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-700'}`}>{testimonial.role}</p>
-              <p className="mt-4 text-lg">
-                <span className="text-emerald-500">“</span> {testimonial.text} <span className="text-emerald-500">”</span>
-              </p>
-            </motion.div>
-          ))}
-        </div>
+        <div className="relative" ref={containerRef}>
+          {renderNavigationButton(-1)}
+          
+          <motion.div
+            drag="x"
+            dragConstraints={containerRef}
+            dragElastic={0.1}
+            onDragEnd={handleDragEnd}
+            style={{ x: dragX }}
+            className="touch-pan-y"
+          >
+            <AnimatePresence initial={false} custom={state.direction} mode="wait">
+              <motion.div
+                key={state.currentIndex}
+                custom={state.direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                  x: { type: "spring", stiffness: 2000, damping: 200 },
+                  opacity: { duration: 0.1 },
+                }}
+                className="grid grid-cols-1 md:grid-cols-2 gap-3 px-4"
+                dir={isRTL ? 'rtl' : 'ltr'}
+              >
+                {getCurrentTestimonials().map((testimonial) => (
+                  <TestimonialCard
+                    key={testimonial.id}
+                    testimonial={testimonial}
+                    isDarkMode={isDarkMode}
+                  />
+                ))}
+              </motion.div>
+            </AnimatePresence>
+          </motion.div>
 
-        {/* نقاط التنقل */}
-        <div className="absolute mt-4 left-1/2 transform -translate-x-1/2 flex gap-4">
-          {Array.from({ length: 4 }).map((_, index) => (
-            <motion.div
-              key={index}
-              onClick={() => handleDotClick(index * 3)}  // Click for each block of 3 testimonials
-              className={`w-2 h-2 rounded-full cursor-pointer ${currentIndex === index * 3 ? 'bg-emerald-400 ' : 'bg-gray-600'}`}
-              whileHover={{ scale: 1.2 }}
-              transition={{ duration: 0.5 }}
-            />
-          ))}
+          {renderNavigationButton(1)}
+          
+          <div className="flex justify-center items-center gap-1 mt-10">
+            {[...Array(totalPages)].map((_, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  const direction = index > state.currentIndex ? 1 : -1;
+                  handleSlideChange(direction);
+                }}
+                className="relative h-2 transition-all duration-200"
+                style={{ width: state.currentIndex === index ? '2rem' : '0.65rem' }}
+              >
+                <div
+                  className={`absolute inset-0 rounded-full ${state.currentIndex === index 
+                    ? 'bg-gradient-to-r from-blue-500 to-blue-700' 
+                    : `${isDarkMode ? 'bg-gray-700' : 'bg-gray-300'}`}
+                  `}
+                />
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 };
 
-export default Testimonials;
+export default memo(Testimonials);

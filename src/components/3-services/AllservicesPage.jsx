@@ -1,28 +1,26 @@
-import { useTranslation } from 'react-i18next';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Code, Target } from 'lucide-react';
-import { Header } from '../1-header/Header';
-import Footer from '../9-Footer/Footer';
+import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import Lottie from 'react-lottie-player';
 import devAnimation from "../../animation/dev.json";
 import marketingAnimation from "../../animation/MarketingLottie.json";
-import PropTypes from 'prop-types';
 
 
 const HeroSection = () => {
   const { t } = useTranslation();
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 300], [0, 100]);
-  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const opacity = useTransform(scrollY, [0, 300], [1, .5]);
 
 
   return (
     <motion.div 
       style={{ y, opacity }}
-      className="relative h-[60vh] flex items-center justify-center overflow-hidden"
+      className="relative h-[60vh] mt-20 flex items-center justify-center overflow-hidden"
     >
       <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/20 to-black/95 z-10" />
-      <div className="absolute inset-0 bg-[url('/Public/images/h2.jpg')] bg-cover bg-center" />
+      <div className="absolute inset-0 bg-[url('/Public/assets/h2.jpg')] bg-cover bg-center" />
       <div className="relative z-20 text-center max-w-4xl mx-auto px-6">
         <motion.h1 
           initial={{ y: 20, opacity: 0 }}
@@ -208,10 +206,8 @@ const ServiceSection = () => {
 const AllServicesPage = () => {
   return (
     <>
-      <Header />
       <HeroSection />
       <ServiceSection />
-      <Footer />
     </>
   );
 };

@@ -32,23 +32,15 @@ const LatestWorks = () => {
   return (
     <section
       id="latestworks"
-      className={`relative  cairo py-8 overflow-hidden ${isDarkMode ? 'bg-gray-950' : 'bg-gray-50'}`}
+      className={`relative  cairo py-8 overflow-hidden ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`}
     >
       {/* Background Effects */}
       <div className="absolute inset-0">
         <div
-          className={`absolute inset-0 bg-gradient-to-br ${
-            isDarkMode
-              ? 'from-gray-900 via-indigo-700/20 to-transparent'
-              : 'from-gray-50 via-blue-200/30 to-transparent'
-          } transform rotate-45 blur-2xl`}
-        />
-        <div
-          className={`absolute inset-0 bg-gradient-to-t ${
-            isDarkMode
-              ? 'from-black via-purple-700/10 to-transparent'
-              : 'from-white via-purple-300/10 to-transparent'
-          } transform -rotate-45 blur-3xl`}
+          className={`absolute inset-0 bg-gradient-to-br  ${isDarkMode 
+          ? 'bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 opacity-50' 
+          : 'bg-gradient-to-br from-gray-50 via-white to-gray-50 opacity-70'}
+          `}
         />
       </div>
 
@@ -67,11 +59,8 @@ const LatestWorks = () => {
             initial={{ width: 0 }}
             whileInView={{ width: '4rem' }}
             viewport={{ once: true }}
-            className={`h-1 bg-gradient-to-r ${
-              isDarkMode
-                ? 'from-emerald-500 via-blue-500 to-emerald-500'
-                : 'from-emerald-400 via-blue-400 to-emerald-400'
-            } mx-auto rounded-full mb-4`}
+            className={`h-1 bg-blue-500
+             mx-auto rounded-full mb-4`}
           />
 
           <motion.p
@@ -99,15 +88,15 @@ const LatestWorks = () => {
               variants={cardVariants}
               className={`relative rounded-lg shadow-md backdrop-blur-md border ${
                 isDarkMode
-                  ? 'border-gray-800/50 hover:shadow-emerald-500/20'
-                  : 'border-gray-200 hover:shadow-emerald-400/30'
+                  ? 'border-gray-800/50 hover:shadow-blue-500/30'
+                  : 'border-gray-200 hover:shadow-blue-400/40'
               } overflow-hidden transition-shadow duration-300`}
             >
               <div
                 className={`absolute inset-0 bg-gradient-to-br ${
                   isDarkMode
-                    ? 'from-emerald-500/5 to-yellow-500/5'
-                    : 'from-blue-200/10 to-yellow-300/10'
+                    ? 'from-blue-500/5 to-blue-500/5'
+                    : 'from-blue-200/10 to-blue-300/10'
                 } blur-lg`}
               />
               <ProjectCard {...project} currentLang={currentLang} />
@@ -124,14 +113,14 @@ const LatestWorks = () => {
           <motion.a
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            href="/projects"
+            href="/Gallery"
             className={`inline-flex items-center gap-1 px-5 py-3 ${
               isDarkMode
-                ? 'bg-gradient-to-r from-yellow-400 to-emerald-600 hover:bg-gradient-to-r hover:from-blue-400 hover:to-emerald-500'
-                : 'bg-gradient-to-r from-yellow-500 to-emerald-700 hover:bg-gradient-to-r hover:from-blue-500 hover:to-emerald-600'
+                ? 'bg-gradient-to-r from-blue-400 to-blue-600 hover:bg-gradient-to-r hover:from-blue-400 hover:to-blue-500'
+                : 'bg-gradient-to-r from-blue-500 to-blue-700 hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-600'
             } text-white rounded-md shadow-lg transition-all`}
           >
-            <span className="font-tajawal text-sm">{t('works.viewMore')}</span>
+            <span >{t('works.viewMore')}</span>
             <ExternalLink size={14} />
           </motion.a>
         </motion.div>

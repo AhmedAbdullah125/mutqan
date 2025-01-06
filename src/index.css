@@ -1,152 +1,78 @@
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@100;200;300;400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Rakkas&display=swap');
-
-
-
-/* Arabic Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600;700;800&display=swap');
-/* أو */
-@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap');
-
-@import url('https://cdn.rawgit.com/ahmedmontaser12/crazynet/89a2750a/Bukra-Font.css');
-
-/* English Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
-/* أو */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-
-
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
-
-
 :root {
-  /* Base Colors */
-  --primary-color: #1a86d3;
-  --secondary-color: #1892f7;
-  --tertiary-color: #4b4dd0;
-  --quaternary-color: #4b4dd0;
-  --quinary-color: #4b4dd0;
-
-  /* Hover States */
-  --primary-hover: #1892f7;
-  --secondary-hover: #0082ed;
-  --tertiary-hover: #4b4dd0;
-  --quaternary-hover: #4b4dd0;
-  --quinary-hover: #4b4dd0;
-
-  /* Gradient Combinations */
-  --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-  --gradient-secondary: linear-gradient(135deg, var(--secondary-color), var(--tertiary-color));
-  --gradient-accent: linear-gradient(135deg, var(--primary-color), var(--tertiary-color));
+  /* Light Theme Colors */
+  --primary-light: #93C5FD;
+  --primary-main: #60A5FA;
+  --primary-dark: #3B82F6;
   
-  /* Hover Gradient Combinations */
-  --gradient-primary-hover: linear-gradient(135deg, var(--primary-hover), var(--secondary-hover));
-  --gradient-secondary-hover: linear-gradient(135deg, var(--secondary-hover), var(--tertiary-hover));
+  --text-light: #ffffff;
+  --text-dark: #1F2937;
   
-
+  --bg-light: #F9FAFB;
+  --bg-dark: #030712;
   
-  /* Glass Effect Colors */
-  --glass-primary: rgba(26, 134, 211, 0.1);
-  --glass-secondary: rgba(24, 146, 247, 0.1);
+  /* Gradients Light */
+  --gradient-primary-light: linear-gradient(180deg, #93C5FD 0%, #60A5FA 50%, #3B82F6 100%);
+  --gradient-glow-light: radial-gradient(circle, #3B82F6 10%, transparent 70%);
 }
 
-/* Base Classes */
-.primary {
-  color: var(--primary-color);
+[data-theme="dark"] {
+  /* Dark Theme Colors */
+  --primary-light: #60A5FA;
+  --primary-main: #3B82F6;
+  --primary-dark: #1E40AF;
+  
+  --text-light: #ffffff;
+  --text-dark: #E5E7EB;
+  
+  --bg-light: #111827;
+  --bg-dark: #030712;
+  
+  /* Gradients Dark */
+  --gradient-primary-dark: linear-gradient(180deg, #60A5FA 0%, #3B82F6 50%, #1E40AF 100%);
+  --gradient-glow-dark: radial-gradient(circle, #60A5FA 10%, transparent 70%);
 }
 
-.primary:hover {
-  color: var(--primary-hover);
+/* Utility Classes */
+.bg-gradient-primary {
+  background: var(--gradient-primary-light);
 }
 
-/* Background Classes */
+.dark .bg-gradient-primary {
+  background: var(--gradient-primary-dark);
+}
+
+.text-primary {
+  color: var(--primary-main);
+}
+
 .bg-primary {
-  background: var(--primary-color);
-  color: #ffffff;
+  background-color: var(--primary-main);
 }
 
-.bg-primary-gradient {
-  background: var(--gradient-primary);
-  color: #ffffff;
+.border-primary {
+  border-color: var(--primary-main);
 }
 
-.bg-multi-gradient {
-  background: var(--gradient-multi);
-  color: #ffffff;
+.hover-primary:hover {
+  color: var(--primary-main);
 }
 
-/* Glass Effect Classes */
-.glass-primary {
-  background: var(--glass-primary);
-  -webkit-backdrop-filter: blur(10px); 
-   backdrop-filter: blur(10px);
-
+.glow-effect {
+  background: var(--gradient-glow-light);
 }
 
-.glass-secondary {
-  background: var(--glass-secondary);
-  -webkit-backdrop-filter: blur(10px); 
-   backdrop-filter: blur(10px);
+.dark .glow-effect {
+  background: var(--gradient-glow-dark);
 }
 
-/* Hover Effects */
-.bg-primaryhover {
-  background: var(--primary-hover);
-  color: #ffffff;
-}
-
-.bg-gradient-hover {
-  background: var(--gradient-primary);
-  transition: backgroun 0.3s ease;
-}
-
-.bg-gradient-hover:hover {
-  background: var(--gradient-primary-hover);
-}
-
-/* Additional Classes */
-.secondary {
-  color: var(--secondary-color);
-}
-
-.bg-secondary {
-  background: var(--secondary-color);
-  color: #ffffff;
-}
-
-.bg-secondaryhover {
-  background: var(--secondary-hover);
-  color: #ffffff;
-}
-
-.secondary:hover {
-  color: var(--secondary-hover);
-}
-
-.tertiary {
-  color: var(--tertiary-color);
-}
-
-.bg-tertiary {
-  background: var(--tertiary-color);
-  color: #ffffff;
-}
-
-.quaternary {
-  color: var(--quaternary-color);
-}
-
-.bg-quaternary {
-  background: var(--quaternary-color);
-  color: #ffffff;
-}
 
 
 .custom-badge {
@@ -184,11 +110,12 @@
     90deg,
     rgba(54, 135, 235, 0.967) 0%,
     rgba(0, 175, 244, 0.719) 49%,
-    rgb(70, 19, 254) 100%
+    rgb(199, 88, 226) 100%
+    
   );
   border-radius: 20rem;
-  width: 20rem;
-  height: 20rem;
+  width: 10rem;
+  height: 8rem;
   filter: blur(10px);
   animation: rotate-effect infinite 5s linear;
   opacity: 0.3;
@@ -203,6 +130,21 @@
   }
 }
 
+* {
+  outline: none !important;
+}
+
+
+
+
+a, button, input, select, textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.no-focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
 
 
 .relaxed { 
