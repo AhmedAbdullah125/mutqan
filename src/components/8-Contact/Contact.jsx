@@ -9,10 +9,11 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useTheme } from "../../Context/ThemeContext"; // 
+import { useTheme } from "../../Context/ThemeContext"; //
+import CornerLights  from "../0-Background/CornerLights";
 
 const Contact = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { isDarkMode } = useTheme(); // 
   const [formStatus, setFormStatus] = useState(null);
 
@@ -23,26 +24,16 @@ const Contact = () => {
   };
 
   return (
+    
     <section
       id="contact"
-      className={`py-10 cairo relative overflow-hidden ${
-        isDarkMode ? "bg-gray-900" : "bg-white"
+      className={`py-10 cairo relative bg-transparent overflow-hidden 
       }`}
-      dir={i18n.language === "ar" ? "rtl" : "ltr"}
-    >
-      <div
-        className={`absolute inset-0 
-          ${isDarkMode 
-            ? 'bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 opacity-50' 
-            : 'bg-gradient-to-br from-gray-50 via-white to-gray-50 opacity-70'}
-`}
-      />
-      <div className="absolute inset-0 pointer-events-none bg-blue-500/20">
-       
-      </div>
-
+    > 
+    <div className="absolute inset-0 opacity-50 w-full h-full" style={{ contain: 'layout paint size', willChange: 'transform' }}>
+    <CornerLights />
+  </div>
       <div className="container mx-auto px-4 relative">
-        {/*  */}
         <div className="text-center mb-10">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -57,9 +48,9 @@ const Contact = () => {
 
           <motion.div
             initial={{ width: 0 }}
-            whileInView={{ width: "4rem" }}
-            viewport={{ once: true }}
-            className={`h-1 bg-blue-500 mx-auto rounded-full mb-4`}
+            whileInView={{ width: '4rem' }}
+            transition={{ duration: 0.6 }}
+            className="h-1 bg-gradient-to-r from-blue-500 to-blue-700 mx-auto rounded-full mb-4"
           />
           <p
             className={`text-gray-400 mt-4 max-w-2xl mx-auto ${

@@ -14,7 +14,6 @@ export const en = {
       requestService: "Request a Service ",
       name: "SubCode",
     },
-
     hero: {
       badge: "Your Trusted Digital Partner",
       title: {
@@ -206,13 +205,14 @@ export const en = {
       osmanRole: "Web Developer",
       osmanText: "Top level professionalism and excellent service.",
     },
-
+    readMore:"Read More",
     latestArticles: {
       title: "Latest Articles",
-      description: "Description",
+      description: "Discover our latest insights and articles on digital transformation",
       subtitle: "Stay updated with our latest insights and articles",
-      viewAllArticles: "View All Articles",
+      viewAll: "View All Articles",
       loadMore: "Read More",
+
     },
 
     blog: {

@@ -3,7 +3,7 @@ import { Search } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useTheme } from '../../Context/ThemeContext';
 import ArticleCard from './ArticleCard';
-import { articles, blogCategories, blogTags } from './Data';
+import { articles, blogCategories, blogTags } from './BlogData';
 
 const BlogPage = () => {
   const { isDarkMode } = useTheme();
@@ -53,21 +53,18 @@ const BlogPage = () => {
             <motion.h1 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className={`text-4xl font-bold text-center mb-4 ${
+              className={`text-3xl font-bold text-center mb-4 ${
                 isDarkMode ? 'text-white' : 'text-gray-900'
               }`}
             >
               مدونتنا
             </motion.h1>
             <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: '4rem' }}
-              className={`h-1 bg-gradient-to-r ${
-                isDarkMode 
-                  ? 'from-emerald-500 via-blue-500 to-emerald-500'
-                  : 'from-emerald-400 via-blue-400 to-emerald-400'
-              } mx-auto rounded-full mb-4`}
-            />
+            initial={{ width: 0 }}
+            whileInView={{ width: '4rem' }}
+            transition={{ duration: 0.6 }}
+            className="h-1 bg-gradient-to-r from-blue-500 to-blue-700 mx-auto rounded-full mb-4"
+          />
             <p className={`text-center max-w-2xl mx-auto ${
               isDarkMode ? 'text-gray-400' : 'text-gray-600'
             }`}>

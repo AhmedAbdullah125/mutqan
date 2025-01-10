@@ -98,7 +98,7 @@ const About = () => {
           <motion.h2
             variants={itemAnimation}
             className={`
-              text-3xl font-bold mb-2
+              text-3xl font-bold mb-4
               ${isDarkMode ? 'text-white' : 'text-gray-900'}
             `}
           >

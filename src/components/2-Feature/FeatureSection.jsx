@@ -47,8 +47,8 @@ const FeatureSection = memo(function FeatureSection() {
 
   // Memoized styles
   const styles = useMemo(() => ({
-    section: `relative overflow-hidden mx-auto py-14 ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`,
-    title: `text-3xl md:text-3xl font-semibold mb-3 md:mb-4 cairo ${isDarkMode ? 'text-white' : 'text-gray-900'}`,
+    section: `relative overflow-hidden mx-auto py-10 ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`,
+    title: `text-3xl md:text-3xl font-bold mb-3 md:mb-4 cairo ${isDarkMode ? 'text-white' : 'text-gray-900'}`,
     underline: `h-1 bg-gradient-to-r md:mt-5 sm:mt-6 ${isDarkMode ? 'from-sky-500 via-blue-500 to-sky-500' : 'from-blue-500 to-blue-500'} mx-auto rounded-full mb-5 md:mb-4 lg:mb-5`
   }), [isDarkMode]);
 
@@ -70,8 +70,8 @@ const FeatureSection = memo(function FeatureSection() {
           <motion.div
             initial={{ width: 0 }}
             whileInView={{ width: '4rem' }}
-            viewport={{ once: true }}
-            className={styles.underline}
+            transition={{ duration: 0.6 }}
+            className="h-1 bg-gradient-to-r from-blue-500 to-blue-700 mx-auto rounded-full mb-2"
           />
         </motion.div>
 

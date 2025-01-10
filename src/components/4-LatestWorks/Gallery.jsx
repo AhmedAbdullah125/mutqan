@@ -1,9 +1,18 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import ProjectCard from './ProjectCard';
 import { projects } from './projectsData';
 import { useTheme } from '../../Context/ThemeContext';
+
+// Helper function to organize projects into balanced columns
+const organizeProjectsInColumns = (projects, numColumns) => {
+  const columns = Array.from({ length: numColumns }, () => []);
+  projects.forEach((project, index) => {
+    columns[index % numColumns].push(project);
+  });
+  return columns;
+};
 
 const Gallery = () => {
   const { t, i18n } = useTranslation();
@@ -34,30 +43,21 @@ const Gallery = () => {
     return () => window.removeEventListener('resize', updateColumns);
   }, [updateColumns]);
 
-  const categories = [
+  const categories = useMemo(() => [
     { id: 'all', label: t('projects.categories.all') },
     { id: 'web', label: t('projects.categories.web') },
     { id: 'mobile', label: t('projects.categories.mobile') },
     { id: 'design', label: t('projects.categories.design') },
-  ];
+  ], [t]);
 
-  const filteredProjects = projects.filter(project => 
+  const filteredProjects = useMemo(() => projects.filter(project => 
     activeTab === 'all' ? true : project.category === activeTab
-  );
+  ), [activeTab]);
 
-  // Organize projects into balanced columns
-  const organizeProjectsInColumns = (projects, numColumns) => {
-    const columns = Array.from({ length: numColumns }, () => []);
-    projects.forEach((project, index) => {
-      columns[index % numColumns].push(project);
-    });
-    return columns;
-  };
-
-  const projectColumns = organizeProjectsInColumns(
+  const projectColumns = useMemo(() => organizeProjectsInColumns(
     filteredProjects.slice(0, visibleProjects),
     columns
-  );
+  ), [filteredProjects, visibleProjects, columns]);
 
   const handleLoadMore = () => {
     const increment = columns === 3 ? 3 : 2;

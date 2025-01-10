@@ -137,19 +137,17 @@ const Services = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h2 className={`text-4xl font-bold mb-2 ${
+            <h2 className={`text-3xl font-bold mb-2 ${
               isDarkMode ? 'text-white' : 'text-gray-900'
             }`}>
               {t('services.title')}
             </h2>
-
             <motion.div
-              initial={{ width: 0 }}
-              whileInView={{ width: '4rem' }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="h-1 bg-gradient-to-r from-blue-500  to-blue-700 mx-auto rounded-full mb-2"
-            />
+            initial={{ width: 0 }}
+            whileInView={{ width: '4rem' }}
+            transition={{ duration: 0.6 }}
+            className="h-1 bg-gradient-to-r from-blue-500 to-blue-700 mx-auto rounded-full mb-4"
+          />
 
             <p className={`${
               isDarkMode ? 'text-gray-300' : 'text-gray-600'

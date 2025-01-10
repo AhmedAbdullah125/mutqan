@@ -17,6 +17,7 @@ export const projects = [
       '/assets/Dental-Dinar.jpeg',
     ],
     liveUrl: "https://store.dentaldinar.shop/",
+    "category": "mobile",
     clientDeliverables: [
       {
         titleAr: "تطبيق مكتمل مع واجهة مستخدم متكاملة",
@@ -238,6 +239,7 @@ export const projects = [
       '/assets/medical.jpeg',
     ],
     liveUrl: "https://medicalinktr.com/",
+    "category": "mobile",
     clientDeliverables: [
       {
         titleAr: "منصة طبية متكاملة للسياحة العلاجية",
@@ -427,6 +429,7 @@ export const projects = [
         '/assets/aqdi.jpeg',
     ],
     "liveUrl": "https://aqdi.sa",
+    "category": "web",
     "clientDeliverables": [
         {
             "titleAr": "منصة إلكترونية متكاملة لإدارة عقود الإيجار",
@@ -571,191 +574,5 @@ export const projects = [
             "descriptionEn": "Secure encryption of sensitive data"
         }
     ]
-},
-
-{
-  "id": "4",
-  "title": "فلاورايزد - هدايا وورود",
-  "titleEn": "Flowerised - Premium Gifts & Flowers",
-  "description": "منصة راقية متخصصة في تنسيق وتقديم الورود والهدايا المميزة، نقدم تجربة فريدة في اختيار وتوصيل الهدايا مع تصاميم عصرية وخدمة احترافية.",
-  "descriptionEn": "Elegant platform specializing in premium flower arrangements and unique gifts with modern designs and professional delivery service.",
-  "image": "/assets/zohory.jpeg",
-  "screenshots": [
-      "/assets/zohory.jpeg",
-      "/assets/zohory.jpeg",
-      "/assets/zohory.jpeg",
-      "/assets/zohory.jpeg",
-      "/assets/zohory.jpeg",
-      "/assets/zohory.jpeg",
-      "/assets/zohory.jpeg",
-      "/assets/zohory.jpeg"
-  ],
-  "liveUrl": "https://flowerised.com",
-  "clientDeliverables": [
-      {
-          "titleAr": "منصة فاخرة لتوصيل الهدايا",
-          "titleEn": "Premium Gift Delivery Platform",
-          "descriptionAr": "تم تسليم منصة فاخرة توفر تجربة تسوق وتوصيل هدايا استثنائية مع تصاميم مميزة وخدمة عملاء احترافية.",
-          "descriptionEn": "A premium platform was delivered offering exceptional gift shopping and delivery experience with unique designs and professional customer service."
-      },
-      {
-          "titleAr": "إدارة الطلبات والمخزون",
-          "titleEn": "Order and Inventory Management",
-          "descriptionAr": "تم تسليم نظام متكامل لإدارة الطلبات والمخزون، مما ساعد في تسهيل عملية الشحن والتوصيل.",
-          "descriptionEn": "A comprehensive order and inventory management system was delivered, helping streamline the shipping and delivery process."
-      },
-      {
-          "titleAr": "دعم فني مستمر",
-          "titleEn": "Continuous Technical Support",
-          "descriptionAr": "تم توفير دعم فني مستمر لضمان استمرارية المنصة بشكل سلس مع الالتزام بتقديم التحديثات الدورية.",
-          "descriptionEn": "Continuous technical support was provided to ensure smooth platform operation with regular updates."
-      }
-  ],
-  "tech": ["React", "Tailwind CSS", "Node.js"],
-  "features": [
-      "تنسيق هدايا مخصص حسب الطلب",
-      "دعم لعدة خيارات دفع",
-      "خدمة التوصيل السريع",
-      "واجهة مستخدم سلسة وسهلة الاستخدام",
-      "إمكانية تتبع الطلبات"
-  ],
-  "featuresEn": [
-      "Custom gift arrangements on demand",
-      "Support for multiple payment options",
-      "Fast delivery service",
-      "Smooth and user-friendly interface",
-      "Order tracking capability"
-  ],
-  "targetAudience": [
-      "الأفراد الذين يبحثون عن هدايا مميزة",
-      "شركات تنظيم الفعاليات والمناسبات",
-      "المتاجر المتخصصة في الهدايا والورود"
-  ],
-  "targetAudienceEn": [
-      "Individuals seeking unique gifts",
-      "Event and occasion management companies",
-      "Gift and flower specialty stores"
-  ],
-  "process": [
-      {
-          "title": "تحليل المتطلبات",
-          "description": "دراسة شاملة لاحتياجات السوق وتحديد المميزات الرئيسية"
-      },
-      {
-          "title": "التصميم والتخطيط",
-          "description": "تطوير واجهات المستخدم وهيكلة قواعد البيانات"
-      },
-      {
-          "title": "التطوير والبرمجة",
-          "description": "بناء المنصة باستخدام أحدث التقنيات"
-      },
-      {
-          "title": "الاختبار والتحسين",
-          "description": "اختبار شامل وتحسين الأداء والتجربة"
-      }
-  ],
-  "processEn": [
-      {
-          "title": "Requirements Analysis",
-          "description": "Comprehensive market needs study and core features identification"
-      },
-      {
-          "title": "Design & Planning",
-          "description": "UI development and database architecture"
-      },
-      {
-          "title": "Development",
-          "description": "Platform building using latest technologies"
-      },
-      {
-          "title": "Testing & Optimization",
-          "description": "Comprehensive testing and performance optimization"
-      }
-  ],
-  "price": "Starting from $5,499",
-  "priceAr": "يبدأ من 20,500 ريال",
-  "deliveryTime": "6-8 weeks",
-  "deliveryTimeAr": "6-8 أسبوع",
-  "statistics": {
-      "users": "3,000+",
-      "orders": "8,000+",
-      "giftsDelivered": "12,000+",
-      "satisfaction": "97%"
   },
-  "architecture": [
-      {
-          "titleAr": "واجهة المستخدم",
-          "titleEn": "Frontend Architecture",
-          "technologies": [
-              { "name": "React" },
-              { "name": "Tailwind CSS" }
-          ]
-      },
-      {
-          "titleAr": "الخدمات الخلفية",
-          "titleEn": "Backend Services",
-          "technologies": [
-              { "name": "Node.js" }
-          ]
-      },
-      {
-          "titleAr": "البنية التحتية",
-          "titleEn": "Infrastructure",
-          "technologies": [
-              { "name": "AWS" }
-          ]
-      }
-  ],
-  "performance": [
-      {
-          "labelAr": "سرعة تحميل الصفحة",
-          "labelEn": "Page Load Speed",
-          "value": "0.8s",
-          "percentage": 92
-      },
-      {
-          "labelAr": "أداء الخادم",
-          "labelEn": "Server Performance",
-          "value": "99.5%",
-          "percentage": 99
-      },
-      {
-          "labelAr": "تحسين SEO",
-          "labelEn": "SEO Optimization",
-          "value": "90%",
-          "percentage": 90
-      }
-  ],
-  "testing": [
-      {
-          "coverage": 96,
-          "typeAr": "اختبارات الوحدات",
-          "typeEn": "Unit Testing",
-          "descriptionAr": "تغطية شاملة للكود",
-          "descriptionEn": "Comprehensive code coverage"
-      },
-      {
-          "coverage": 92,
-          "typeAr": "اختبارات التكامل",
-          "typeEn": "Integration Testing",
-          "descriptionAr": "ضمان تكامل النظام",
-          "descriptionEn": "System integration assurance"
-      }
-  ],
-  "security": [
-      {
-          "titleAr": "تشفير البيانات",
-          "titleEn": "Data Encryption",
-          "descriptionAr": "تشفير متقدم للبيانات الحساسة",
-          "descriptionEn": "Advanced encryption for sensitive data"
-      },
-      {
-          "titleAr": "المصادقة المتعددة",
-          "titleEn": "Multi-factor Authentication",
-          "descriptionAr": "طبقات متعددة من الحماية",
-          "descriptionEn": "Multiple layers of protection"
-      }
-  ]
-}
-
-];
+]

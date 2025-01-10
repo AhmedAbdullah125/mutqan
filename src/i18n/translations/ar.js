@@ -209,11 +209,13 @@ export const ar = {
 
     latestArticles: {
       title: "أحدث المقالات",
-      description: "الوصف",
+      description: "  اكتشف احدث مقالاتنا ودروسنا ورؤانا في التحول الرقمي",
       subtitle: "ابق على اطلاع بأحدث رؤانا ومقالاتنا",
-      viewAllArticles: "عرض جميع المقالات",
+      viewAll: "عرض جميع المقالات",
       loadMore: "اقرأ المزيد",
     },
+    readMore: "قراءة المزيد",
+
 
     blog: {
       title: "مدونتنا",

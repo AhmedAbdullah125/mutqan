@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://subcode.ebrahim-reda.com",
+  "homepage": "https://subcodeco..com",
   "description": "subcode is a modern React UI Kit that is built with React, Next.js, and Tailwind CSS. for building modern and beautiful websites. " ,
   "scripts": {
     "dev": "vite",

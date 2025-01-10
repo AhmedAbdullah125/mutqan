@@ -10,25 +10,6 @@ const LatestWorks = () => {
   const { isDarkMode } = useTheme();
   const currentLang = i18n.language;
 
-  // Animation Variants
-  const cardVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { duration: 0.6, ease: 'easeOut' } 
-    },
-  };
-
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
   return (
     <section
       id="latestworks"
@@ -58,9 +39,8 @@ const LatestWorks = () => {
           <motion.div
             initial={{ width: 0 }}
             whileInView={{ width: '4rem' }}
-            viewport={{ once: true }}
-            className={`h-1 bg-blue-500
-             mx-auto rounded-full mb-4`}
+            transition={{ duration: 0.6 }}
+            className="h-1 bg-gradient-to-r from-blue-500 to-blue-700 mx-auto rounded-full mb-4"
           />
 
           <motion.p
@@ -75,53 +55,55 @@ const LatestWorks = () => {
           </motion.p>
         </div>
 
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8"
-          initial="hidden"
-          whileInView="visible"
+         {/* Projects Grid */}
+         <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          variants={containerVariants}
+          transition={{ duration: 0.5 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10"
         >
-          {projects.map((project) => (
+          {projects.slice(0, 6).map((project, index) => (
             <motion.div
-              key={project.titleEn}
-              variants={cardVariants}
-              className={`relative rounded-lg shadow-md backdrop-blur-md border ${
-                isDarkMode
-                  ? 'border-gray-800/50 hover:shadow-blue-500/30'
-                  : 'border-gray-200 hover:shadow-blue-400/40'
-              } overflow-hidden transition-shadow duration-300`}
+              key={project.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${
-                  isDarkMode
-                    ? 'from-blue-500/5 to-blue-500/5'
-                    : 'from-blue-200/10 to-blue-300/10'
-                } blur-lg`}
+              <ProjectCard 
+                {...project}
+                currentLang={currentLang}
               />
-              <ProjectCard {...project} currentLang={currentLang} />
             </motion.div>
           ))}
         </motion.div>
 
+        {/* View More Button */}
         <motion.div
-          className="text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          className="text-center"
         >
           <motion.a
+            href="/Gallery"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            href="/Gallery"
-            className={`inline-flex items-center gap-1 px-5 py-3 ${
-              isDarkMode
-                ? 'bg-gradient-to-r from-blue-400 to-blue-600 hover:bg-gradient-to-r hover:from-blue-400 hover:to-blue-500'
-                : 'bg-gradient-to-r from-blue-500 to-blue-700 hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-600'
-            } text-white rounded-md shadow-lg transition-all`}
+            className={`
+              inline-flex items-center gap-2
+              px-4 py-2 rounded-xl
+              font-medium text-white
+              bg-gradient-to-r from-blue-500 to-blue-600
+              hover:from-blue-600 hover:to-blue-700
+              shadow-lg hover:shadow-blue-500/25
+              transition-all duration-300
+            `}
           >
-            <span >{t('works.viewMore')}</span>
-            <ExternalLink size={14} />
+            <span className="text-lg">
+              {t('works.viewMore')}
+            </span>
+            <ExternalLink className="w-5 h-5" />
           </motion.a>
         </motion.div>
       </div>
