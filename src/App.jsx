@@ -42,7 +42,7 @@ const LatestWorks = React.lazy(() =>
 );
 const Gallery = React.lazy(() => import("./components/4-LatestWorks/Gallery"));
 const Steps = React.lazy(() => import("./components/5-steps/steps"));
-const About = React.lazy(() => import("./components/7-Testimonials/About"));
+const About = React.lazy(() => import("./components/6-about/About"));
 const Testimonials = React.lazy(() =>
   import("./components/7-Testimonials/Testimonials")
 );

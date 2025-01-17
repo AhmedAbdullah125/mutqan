@@ -288,6 +288,7 @@ const shouldShowTransparentHeader = useCallback(() => {
     const newLang = i18n.language === "ar" ? "en" : "ar";
     i18n.changeLanguage(newLang);
     document.documentElement.dir = newLang === "ar" ? "rtl" : "ltr";
+    window.location.reload();
   };
 
   // Menu handlers

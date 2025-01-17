@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "homepage": "https://subcodeco..com",
-  "description": "subcode is a modern React UI Kit that is built with React, Next.js, and Tailwind CSS. for building modern and beautiful websites. " ,
+  "description": "subcode is a modern React UI Kit that is built with React, Next.js, and Tailwind CSS. for building modern and beautiful websites. ",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -16,7 +16,9 @@
     "@fortawesome/free-solid-svg-icons": "^6.7.1",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@heroicons/react": "^2.2.0",
+    "axios": "^1.7.9",
     "framer-motion": "^11.15.0",
+    "html-react-parser": "^5.2.2",
     "i18next": "^24.0.0",
     "i18next-browser-languagedetector": "^8.0.0",
     "lighthouse": "^12.3.0",
@@ -52,5 +54,4 @@
     "tailwindcss": "^3.4.15",
     "vite": "^5.4.10"
   }
-  
 }

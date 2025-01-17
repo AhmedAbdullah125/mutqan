@@ -21,26 +21,25 @@ const LoadingSkeleton = () => (
 const ProjectCard = ({ 
   id, 
   title, 
-  titleEn, 
-  description, 
-  descriptionEn, 
-  image, 
-  tech, 
+  name, 
+  thumbnail, 
+  tools, 
   currentLang 
 }) => {
+  console.log("ProjectCard", id, title, name, thumbnail, tools, currentLang)
   const { isDarkMode } = useTheme();
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   
-  const displayTitle = currentLang === 'ar' ? title : titleEn;
-  const displayDescription = currentLang === 'ar' ? description : descriptionEn;
+  const displayTitle =  title ;
+  const displayDescription =  name ;
   const isArabic = currentLang === 'ar';
 
   useEffect(() => {
     const preloadImage = new Image();
-    preloadImage.src = image;
+    preloadImage.src = thumbnail;
     preloadImage.onload = () => setImageLoaded(true);
-  }, [image]);
+  }, [thumbnail]);
 
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -84,7 +83,7 @@ const ProjectCard = ({
       <div className="relative h-[240px] w-full overflow-hidden">
         <motion.img
           variants={imageVariants}
-          src={image}
+          src={thumbnail}
           alt={displayTitle}
           className={`
             object-cover w-full h-full
@@ -104,9 +103,9 @@ const ProjectCard = ({
           className="absolute bottom-4 left-0 right-0 px-4"
         >
           <div className="flex flex-wrap gap-2 justify-center">
-            {tech.map((item) => (
+            {tools.map((item,index) => (
               <span
-                key={item}
+                key={index}
                 className={`
                   px-4 py-1.5 rounded-full
                   text-sm font-medium
@@ -176,15 +175,15 @@ const ProjectCard = ({
   );
 };
 
-ProjectCard.propTypes = {
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  titleEn: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  descriptionEn: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  tech: PropTypes.arrayOf(PropTypes.string).isRequired,
-  currentLang: PropTypes.string.isRequired
-};
+// ProjectCard.propTypes = {
+//   id: PropTypes.string.isRequired,
+//   title: PropTypes.string.isRequired,
+//   titleEn: PropTypes.string.isRequired,
+//   description: PropTypes.string.isRequired,
+//   descriptionEn: PropTypes.string.isRequired,
+//   image: PropTypes.string.isRequired,
+//   tech: PropTypes.arrayOf(PropTypes.string).isRequired,
+//   currentLang: PropTypes.string.isRequired
+// };
 
 export default ProjectCard;
