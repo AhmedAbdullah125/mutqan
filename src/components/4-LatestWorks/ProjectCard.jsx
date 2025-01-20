@@ -21,12 +21,12 @@ const LoadingSkeleton = () => (
 const ProjectCard = ({ 
   id, 
   title, 
+  slug,
   name, 
   thumbnail, 
   tools, 
   currentLang 
 }) => {
-  console.log("ProjectCard", id, title, name, thumbnail, tools, currentLang)
   const { isDarkMode } = useTheme();
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -144,7 +144,7 @@ const ProjectCard = ({
 
         <div className="mt-auto flex justify-center">
           <Link
-            to={`/project/${id}`}
+            to={`/project/${slug}`}
             className={`
               group
               inline-flex items-center gap-1

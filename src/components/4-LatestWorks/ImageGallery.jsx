@@ -13,7 +13,7 @@ export const ImageGallery = ({ project, isDarkMode }) => {
   const thumbnailsPerPage = isMobile ? 4 : 6;
   const [currentPage, setCurrentPage] = useState(0);
 
-  const totalPages = Math.ceil(project.screenshots.length / thumbnailsPerPage);
+  const totalPages = Math.ceil(project.images.length / thumbnailsPerPage);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -29,12 +29,12 @@ export const ImageGallery = ({ project, isDarkMode }) => {
   }, [isAutoPlaying]);
 
   const nextImage = useCallback(() => {
-    setActiveImage(prev => (prev === project.screenshots.length - 1 ? 0 : prev + 1));
-  }, [project.screenshots.length]);
+    setActiveImage(prev => (prev === project.images.length - 1 ? 0 : prev + 1));
+  }, [project.images.length]);
 
   const prevImage = useCallback(() => {
-    setActiveImage(prev => (prev === 0 ? project.screenshots.length - 1 : prev - 1));
-  }, [project.screenshots.length]);
+    setActiveImage(prev => (prev === 0 ? project.images.length - 1 : prev - 1));
+  }, [project.images.length]);
 
   const handleDragStart = (event) => {
     setIsAutoPlaying(false);
@@ -77,7 +77,7 @@ export const ImageGallery = ({ project, isDarkMode }) => {
             key={activeImage}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            src={project.screenshots[activeImage]}
+            src={project.images[activeImage]}
             alt={`Screenshot ${activeImage + 1}`}
             className="w-full aspect-video object-cover cursor-grab active:cursor-grabbing"
           />
@@ -116,7 +116,7 @@ export const ImageGallery = ({ project, isDarkMode }) => {
         </button>
 
         <div className="absolute inset-x-0 bottom-4 flex justify-center gap-2">
-          {project.screenshots.map((_, index) => (
+          {project.images.map((_, index) => (
             <button
               key={index}
               onClick={() => setActiveImage(index)}
@@ -132,7 +132,7 @@ export const ImageGallery = ({ project, isDarkMode }) => {
 
       <div className="relative">
         <div className="flex gap-2 overflow-hidden">
-          {project.screenshots
+          {project.images
             .slice(
               currentPage * thumbnailsPerPage,
               (currentPage + 1) * thumbnailsPerPage
@@ -194,7 +194,7 @@ const MaximizedView = ({ project, activeImage, setIsMaximized, nextImage, prevIm
     </button>
 
     <img
-      src={project.screenshots[activeImage]}
+      src={project.images[activeImage]}
       alt={`Screenshot ${activeImage + 1}`}
       className="max-h-[90vh] max-w-[90vw] object-contain"
     />
@@ -218,7 +218,7 @@ const MaximizedView = ({ project, activeImage, setIsMaximized, nextImage, prevIm
 
 ImageGallery.propTypes = {
   project: PropTypes.shape({
-    screenshots: PropTypes.arrayOf(PropTypes.string).isRequired,
+    images: PropTypes.arrayOf(PropTypes.string).isRequired,
     title: PropTypes.string.isRequired,
     titleEn: PropTypes.string.isRequired
   }).isRequired,

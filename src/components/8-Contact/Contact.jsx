@@ -2,11 +2,14 @@ import { motion } from "framer-motion";
 import {
   Facebook,
   Instagram,
+  Linkedin,
   Mail,
   MapPin,
   Phone,
   Twitter,
+
 } from "lucide-react";
+
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../../Context/ThemeContext"; //
@@ -88,43 +91,28 @@ const Contact = () => {
                   >
                     <Phone className="w-6 h-6" />
                   </div>
-                  <span
-                    className={isDarkMode ? "text-gray-300" : "text-black-900"}
+                  <a href="tel:+905528255694"
+                    className={isDarkMode ? "text-gray-300 cursor-pointer" : "text-black-900 cursor-pointer"}
                   >
-                    +966 123 456 789
-                  </span>
+                    +90 552 825 56 94
+                  </a>
                 </li>
                 <li className="flex items-center justify-center gap-4">
-                  <div
-                    className={`p-3 rounded-full ${
-                      isDarkMode
-                        ? "bg-yellow-500/20 text-yellow-500"
-                        : "bg-orange-500/20 text-orange-500"
-                    }`}
-                  >
+                  <div className={`p-3 rounded-full ${ isDarkMode ? "bg-yellow-500/20 text-yellow-500"  : "bg-orange-500/20 text-orange-500"  }`}>
                     <Mail className="w-6 h-6" />
                   </div>
-                  <span
-                    className={isDarkMode ? "text-gray-300" : "text-black-900"}
-                  >
-                    contact@next-level.com
-                  </span>
+                  <a href="mailto:info@subcodeco.com" className={isDarkMode ? "text-gray-300 cursor-pointer" : "text-black-900 cursor-pointer" } >
+                    info@subcodeco.com
+                  </a>
                 </li>
                 <li className="flex items-center justify-center gap-4">
-                  <div
-                    className={`p-3 rounded-full ${
-                      isDarkMode
-                        ? "bg-cyan-500/20 text-cyan-500"
-                        : "bg-teal-500/20 text-teal-500"
-                    }`}
-                  >
+                  <div className={`p-3 rounded-full ${ isDarkMode ? "bg-cyan-500/20 text-cyan-500" : "bg-teal-500/20 text-teal-500"}`}>
                     <MapPin className="w-6 h-6" />
                   </div>
-                  <span
-                    className={isDarkMode ? "text-gray-300" : "text-black-900"}
-                  >
-                    {t("contact.location")}
-                  </span>
+                 <div className="flex flex-col gap-3">
+                 <span className={isDarkMode ? "text-gray-300" : "text-black-900"} > {t("contact.location")}  </span>
+                 <span className={isDarkMode ? "text-gray-300" : "text-black-900"} > {t("contact.location2")}  </span>
+                 </div>
                 </li>
               </ul>
             </div>
@@ -134,20 +122,24 @@ const Contact = () => {
                 {
                   Icon: Facebook,
                   color: isDarkMode ? "text-blue-400" : "text-blue-400",
+                  linkto:'https://www.facebook.com/subcodeco/'
+
                 },
                 {
                   Icon: Instagram,
                   color: isDarkMode ? "text-pink-500" : "text-pink-600",
+                  linkto:'https://www.instagram.com/subcodeco/'
                 },
                 {
-                  Icon: Twitter,
+                  Icon: Linkedin,
                   color: isDarkMode ? "text-cyan-400" : "text-cyan-500",
+                  linkto:"https://www.linkedin.com/in/subcode/"
                 },
-              ].map(({ Icon, color }, index) => (
+              ].map(({ Icon, color , linkto }, index) => (
                 <a
                   key={index}
-                  href="#"
-                  className={`p-3 rounded-full bg-gray-800 ${color} transition-colors duration-300`}
+                  href={linkto}
+                  className={`p-3 rounded-full bg-gray-800 ${color} transition-colors duration-300 cursor-pointer hover:bg-gray-700`}
                 >
                   <Icon className="w-5 h-5" />
                 </a>

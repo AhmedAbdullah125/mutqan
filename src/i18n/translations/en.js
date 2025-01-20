@@ -148,6 +148,7 @@ export const en = {
         "We have a dedicated team that communicates with you to help you achieve your business goals. We are here to assist you, contact us and we will respond as soon as possible.",
       subtitle: "get in touch ",
       location: "Mansoura-Daqahlia-Egypt",
+      location2: "ّIstanbul - Turkey",
       name: "Name",
       email: "Email address",
       message: "Your Message",
@@ -294,7 +295,7 @@ export const en = {
         about: "About",
         allservices: "All Services",
       },
-      brand: "Next level",
+      brand: "SubCode",
       description:
         "We specialize in programming, design, and marketing, offering innovative and tailored solutions to drive your success. Our expert team is ready to bring your ideas to life with top quality and efficiency. Join us today to create your success story!  ",
       quickLinksTitle: "Quick Links",
